@@ -207,35 +207,81 @@
         }
         #cursor-dot.hidden, #cursor-glow.hidden { opacity: 0; }
 
-        /* ===== MOBILE PERFORMANCE: kill all expensive effects ===== */
+        /* ===== MOBILE PERFORMANCE ===== */
         @media (pointer: coarse), (max-width: 768px) {
-            /* Hide cursor elements */
             #cursor-dot, #cursor-glow { display: none !important; }
             html, body, .dot, .arrow-btn, a { cursor: auto !important; }
-
-            /* Kill blur on all decorative blobs — these are the biggest mobile killers */
             .parallax {
                 filter: none !important;
                 -webkit-filter: none !important;
                 opacity: 0.35;
             }
-
-            /* Kill backdrop blur on banner */
             .backdrop-blur-xl,
             [class*="backdrop-blur"] {
                 backdrop-filter: none !important;
                 -webkit-backdrop-filter: none !important;
             }
-
-            /* Kill glow frame shadow */
             .glow-frame {
                 box-shadow: 0 0 20px rgba(255, 107, 53, 0.06) !important;
             }
-
-            /* Kill blur-2xl on photo glow */
             .blur-2xl {
                 filter: none !important;
                 -webkit-filter: none !important;
+            }
+        }
+
+        /* ===== MOBILE LAYOUT FIXES ===== */
+        @media (max-width: 767px) {
+            .panel {
+                align-items: flex-start;
+                padding-top: 56px;
+            }
+            .hero-content {
+                flex-direction: column !important;
+                align-items: center !important;
+                text-align: center;
+                gap: 1.5rem !important;
+                padding-top: 0 !important;
+            }
+            .hero-text {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            .hero-text .max-w-md {
+                max-width: 100%;
+            }
+            .hero-photo {
+                width: 11rem !important;
+            }
+            .hero-photo .parallax {
+                transform: none !important;
+            }
+            .about-content {
+                padding-top: 0 !important;
+            }
+            .adventure-content {
+                padding-top: 0 !important;
+            }
+            .adventure-images {
+                flex-direction: column !important;
+                gap: 0.75rem !important;
+            }
+            .adventure-images > div {
+                height: 220px !important;
+            }
+            .passions-content {
+                padding-top: 0 !important;
+            }
+            .passions-grid {
+                grid-template-columns: 1fr !important;
+                gap: 0.75rem !important;
+            }
+            .passions-grid > div {
+                padding: 1.25rem !important;
+            }
+            .contact-content {
+                padding-top: 0 !important;
             }
         }
     </style>
@@ -289,31 +335,32 @@
     <div class="hscroll-wrapper" id="wrapper">
         <div class="hscroll-track" id="track">
 
+            <!-- HERO -->
             <section class="panel" data-idx="0">
                 <div class="absolute top-[20%] -left-40 w-[550px] h-[550px] rounded-full bg-gradient-to-br from-[#FF6B35]/18 to-[#FF4E6A]/8 blur-[130px] parallax" data-speed="-0.18"></div>
                 <div class="absolute bottom-[15%] right-[-5%] w-[420px] h-[420px] rounded-full bg-gradient-to-tl from-[#FFB347]/14 to-transparent blur-[110px] parallax" data-speed="-0.1"></div>
                 <div class="absolute top-[45%] left-[18%] w-36 art-line opacity-25 parallax" data-speed="-0.06"></div>
                 <div class="absolute top-[30%] right-[22%] w-52 art-line opacity-15 parallax" data-speed="0.09"></div>
 
-                <div class="relative z-10 flex items-center gap-12 xl:gap-20 px-10 lg:px-20 xl:px-28 max-w-[1380px] pt-14">
-                    <div class="flex-1 min-w-0">
-                        <p class="text-[11px] font-semibold tracking-[0.35em] uppercase text-[#FF6B35] mb-5 fade-up">Welcome to my world</p>
-                        <h1 class="font-serif text-6xl sm:text-7xl xl:text-[5.5rem] font-bold leading-[0.95] tracking-tight mb-8 title-hover cursor-default">
+                <div class="hero-content relative z-10 flex items-center gap-12 xl:gap-20 px-8 lg:px-20 xl:px-28 max-w-[1380px] pt-14">
+                    <div class="hero-text flex-1 min-w-0">
+                        <p class="text-[11px] font-semibold tracking-[0.35em] uppercase text-[#FF6B35] mb-4 fade-up">Welcome to my world</p>
+                        <h1 class="font-serif text-5xl sm:text-6xl md:text-7xl xl:text-[5.5rem] font-bold leading-[0.95] tracking-tight mb-6 title-hover cursor-default">
                             <span class="gradient-text">Carlos</span>
                         </h1>
-                        <div class="w-16 h-[2px] bg-gradient-to-r from-[#FF6B35] to-[#FF4E6A] mb-8"></div>
-                        <p class="font-serif italic text-lg md:text-xl text-[#9090A8] leading-relaxed max-w-md">
+                        <div class="w-16 h-[2px] bg-gradient-to-r from-[#FF6B35] to-[#FF4E6A] mb-6"></div>
+                        <p class="font-serif italic text-base md:text-lg xl:text-xl text-[#9090A8] leading-relaxed max-w-md">
                             "Built on faith, powered by curiosity, driven by purpose."
                         </p>
-                        <div class="mt-10 flex items-center gap-2 text-[11px] text-[#505068] tracking-[0.2em] uppercase font-medium">
+                        <div class="mt-8 flex items-center gap-2 text-[11px] text-[#505068] tracking-[0.2em] uppercase font-medium">
                             <iconify-icon icon="lucide:arrow-right" class="text-[#FF6B35] text-sm"></iconify-icon>
                             <span>Swipe to explore</span>
                         </div>
                     </div>
 
-                    <div class="flex-shrink-0 relative">
+                    <div class="hero-photo flex-shrink-0 relative">
                         <div class="absolute -inset-5 bg-gradient-to-br from-[#FF6B35]/18 via-[#FF4E6A]/8 to-[#FFB347]/15 rounded-3xl blur-2xl parallax" data-speed="0.12"></div>
-                        <div class="relative w-64 sm:w-72 md:w-80 xl:w-[22rem] rounded-2xl overflow-hidden glow-frame parallax photo-hover" data-speed="-0.06">
+                        <div class="relative w-60 sm:w-64 md:w-72 lg:w-80 xl:w-[22rem] rounded-2xl overflow-hidden glow-frame parallax photo-hover" data-speed="-0.06">
                             <img src="https://z-cdn-media.chatglm.cn/files/45fdf978-450a-413e-a2f6-6621b8515725.PNG?auth_key=1875751399-cb0adb4043b8481da0653d316d2f1708-0-c4f1dc548ee4718086b53c1090f3e2e4" alt="Carlos" class="w-full h-auto object-cover">
                             <div class="absolute inset-0 bg-gradient-to-t from-[#0B0B14]/50 via-transparent to-transparent"></div>
                         </div>
@@ -325,35 +372,36 @@
                 </div>
             </section>
 
+            <!-- ABOUT -->
             <section class="panel" data-idx="1">
                 <div class="absolute top-[25%] right-[15%] w-[450px] h-[450px] rounded-full bg-gradient-to-bl from-[#FF4E6A]/12 to-transparent blur-[110px] parallax" data-speed="0.14"></div>
 
-                <div class="relative z-10 px-10 lg:px-20 xl:px-28 max-w-[1080px] w-full pt-14">
-                    <p class="text-[11px] font-semibold tracking-[0.35em] uppercase text-[#FF6B35] mb-4 fade-up">About Me</p>
-                    <h2 class="font-serif text-4xl md:text-5xl xl:text-[3.6rem] font-bold leading-[0.92] tracking-tight mb-12 title-hover cursor-default">
+                <div class="about-content relative z-10 px-6 sm:px-8 lg:px-20 xl:px-28 max-w-[1080px] w-full pt-14">
+                    <p class="text-[11px] font-semibold tracking-[0.35em] uppercase text-[#FF6B35] mb-3 fade-up">About Me</p>
+                    <h2 class="font-serif text-3xl sm:text-4xl md:text-5xl xl:text-[3.6rem] font-bold leading-[0.92] tracking-tight mb-8 md:mb-12 title-hover cursor-default">
                         Who I <span class="gradient-text">Am</span>
                     </h2>
 
-                    <div class="grid md:grid-cols-2 gap-12 xl:gap-16">
+                    <div class="grid md:grid-cols-2 gap-8 md:gap-12 xl:gap-16">
                         <div class="fade-up">
-                            <p class="text-[#B0B0C4] leading-[1.8] text-[15px] md:text-base mb-6">
+                            <p class="text-[#B0B0C4] leading-[1.8] text-sm md:text-[15px] mb-5">
                                 I am a God-fearing man who loves family, friends, and people in general. I believe life is an adventure meant to be lived fully — with joy in every moment and faith in every step.
                             </p>
-                            <p class="text-[#B0B0C4] leading-[1.8] text-[15px] md:text-base">
+                            <p class="text-[#B0B0C4] leading-[1.8] text-sm md:text-[15px]">
                                 I love going for bike rides and enjoy camping under the stars. I also love working with AI and improving business processes — finding where technology meets human purpose.
                             </p>
                         </div>
                         <div class="fade-up">
-                            <p class="text-[11px] font-semibold tracking-[0.25em] uppercase text-[#505068] mb-6">My Personality</p>
-                            <div class="flex flex-wrap gap-3">
-                                <span class="pill-hover px-5 py-2.5 rounded-full border border-[#FF6B35]/20 bg-[#FF6B35]/5 text-sm text-[#FFB070] cursor-none">Playful</span>
-                                <span class="pill-hover px-5 py-2.5 rounded-full border border-[#FF4E6A]/20 bg-[#FF4E6A]/5 text-sm text-[#FF8A98] cursor-none">Bold</span>
-                                <span class="pill-hover px-5 py-2.5 rounded-full border border-[#FFB347]/20 bg-[#FFB347]/5 text-sm text-[#FFD080] cursor-none">Curious</span>
-                                <span class="pill-hover px-5 py-2.5 rounded-full border border-[#FF6B35]/20 bg-[#FF6B35]/5 text-sm text-[#FFB070] cursor-none">Always Happy</span>
-                                <span class="pill-hover px-5 py-2.5 rounded-full border border-[#FF4E6A]/20 bg-[#FF4E6A]/5 text-sm text-[#FF8A98] cursor-none">Faith-Led</span>
-                                <span class="pill-hover px-5 py-2.5 rounded-full border border-[#FFB347]/20 bg-[#FFB347]/5 text-sm text-[#FFD080] cursor-none">Purpose-Driven</span>
+                            <p class="text-[11px] font-semibold tracking-[0.25em] uppercase text-[#505068] mb-5">My Personality</p>
+                            <div class="flex flex-wrap gap-2.5">
+                                <span class="pill-hover px-4 py-2 rounded-full border border-[#FF6B35]/20 bg-[#FF6B35]/5 text-xs sm:text-sm text-[#FFB070] cursor-none">Playful</span>
+                                <span class="pill-hover px-4 py-2 rounded-full border border-[#FF4E6A]/20 bg-[#FF4E6A]/5 text-xs sm:text-sm text-[#FF8A98] cursor-none">Bold</span>
+                                <span class="pill-hover px-4 py-2 rounded-full border border-[#FFB347]/20 bg-[#FFB347]/5 text-xs sm:text-sm text-[#FFD080] cursor-none">Curious</span>
+                                <span class="pill-hover px-4 py-2 rounded-full border border-[#FF6B35]/20 bg-[#FF6B35]/5 text-xs sm:text-sm text-[#FFB070] cursor-none">Always Happy</span>
+                                <span class="pill-hover px-4 py-2 rounded-full border border-[#FF4E6A]/20 bg-[#FF4E6A]/5 text-xs sm:text-sm text-[#FF8A98] cursor-none">Faith-Led</span>
+                                <span class="pill-hover px-4 py-2 rounded-full border border-[#FFB347]/20 bg-[#FFB347]/5 text-xs sm:text-sm text-[#FFD080] cursor-none">Purpose-Driven</span>
                             </div>
-                            <div class="mt-10 flex items-center gap-4">
+                            <div class="mt-8 flex items-center gap-4">
                                 <div class="w-10 h-[1px] bg-[#FF6B35]/25"></div>
                                 <div class="w-[7px] h-[7px] rotate-45 border border-[#FF6B35]/35"></div>
                                 <div class="w-20 h-[1px] bg-[#FF6B35]/15"></div>
@@ -365,83 +413,85 @@
                 </div>
             </section>
 
+            <!-- ADVENTURE -->
             <section class="panel" data-idx="2">
                 <div class="absolute bottom-[-10%] left-[30%] w-[500px] h-[320px] rounded-full bg-gradient-to-t from-[#FF6B35]/10 to-transparent blur-[90px] parallax" data-speed="0.16"></div>
 
-                <div class="relative z-10 px-10 lg:px-20 xl:px-28 max-w-[1180px] w-full pt-14">
-                    <p class="text-[11px] font-semibold tracking-[0.35em] uppercase text-[#FF6B35] mb-4 fade-up">Adventure</p>
-                    <h2 class="font-serif text-4xl md:text-5xl xl:text-[3.6rem] font-bold leading-[0.92] tracking-tight mb-3 title-hover cursor-default">
+                <div class="adventure-content relative z-10 px-6 sm:px-8 lg:px-20 xl:px-28 max-w-[1180px] w-full pt-14">
+                    <p class="text-[11px] font-semibold tracking-[0.35em] uppercase text-[#FF6B35] mb-3 fade-up">Adventure</p>
+                    <h2 class="font-serif text-3xl sm:text-4xl md:text-5xl xl:text-[3.6rem] font-bold leading-[0.92] tracking-tight mb-2 title-hover cursor-default">
                         The Great <span class="gradient-text">Outdoors</span>
                     </h2>
-                    <p class="text-[#8888A0] text-[15px] md:text-base mb-10 max-w-lg leading-relaxed fade-up">
+                    <p class="text-[#8888A0] text-sm md:text-[15px] mb-6 md:mb-10 max-w-lg leading-relaxed fade-up">
                         Adventurous to me is outdoorsy, risk-taking. It's the dirt trails, the wide-open canyons, the feeling of being truly alive.
                     </p>
 
-                    <div class="flex gap-5 fade-up">
-                        <div class="flex-1 relative rounded-2xl overflow-hidden h-[380px] md:h-[420px] xl:h-[440px]">
+                    <div class="adventure-images flex gap-5 fade-up">
+                        <div class="flex-1 relative rounded-2xl overflow-hidden h-[200px] sm:h-[280px] md:h-[380px] lg:h-[420px] xl:h-[440px]">
                             <img src="https://picsum.photos/seed/canyon-sunset-vast/900/700.jpg" alt="Grand Canyon vista" class="w-full h-full object-cover scene-hover">
                             <div class="absolute inset-0 bg-gradient-to-t from-[#0B0B14]/80 via-[#0B0B14]/15 to-transparent pointer-events-none"></div>
-                            <div class="absolute bottom-7 left-7 pointer-events-none">
-                                <p class="text-[10px] font-semibold tracking-[0.3em] uppercase text-[#FF6B35] mb-1.5">Explore</p>
-                                <p class="font-serif text-xl md:text-2xl font-semibold text-white">Grand Canyon</p>
+                            <div class="absolute bottom-5 left-5 pointer-events-none">
+                                <p class="text-[10px] font-semibold tracking-[0.3em] uppercase text-[#FF6B35] mb-1">Explore</p>
+                                <p class="font-serif text-lg md:text-xl xl:text-2xl font-semibold text-white">Grand Canyon</p>
                             </div>
-                            <div class="absolute top-5 right-5 w-10 h-10 rounded-full bg-black/30 backdrop-blur-sm flex items-center justify-center pointer-events-none">
-                                <iconify-icon icon="lucide:compass" width="18" class="text-[#FF6B35]/80"></iconify-icon>
+                            <div class="absolute top-4 right-4 w-9 h-9 rounded-full bg-black/30 backdrop-blur-sm flex items-center justify-center pointer-events-none">
+                                <iconify-icon icon="lucide:compass" width="16" class="text-[#FF6B35]/80"></iconify-icon>
                             </div>
                         </div>
 
-                        <div class="flex-1 relative rounded-2xl overflow-hidden h-[380px] md:h-[420px] xl:h-[440px]">
+                        <div class="flex-1 relative rounded-2xl overflow-hidden h-[200px] sm:h-[280px] md:h-[380px] lg:h-[420px] xl:h-[440px]">
                             <img src="https://picsum.photos/seed/forest-dirt-path/900/700.jpg" alt="Dirt trail through nature" class="w-full h-full object-cover scene-hover scene-hover-r">
                             <div class="absolute inset-0 bg-gradient-to-t from-[#0B0B14]/80 via-[#0B0B14]/15 to-transparent pointer-events-none"></div>
-                            <div class="absolute bottom-7 left-7 pointer-events-none">
-                                <p class="text-[10px] font-semibold tracking-[0.3em] uppercase text-[#FFB347] mb-1.5">Ride</p>
-                                <p class="font-serif text-xl md:text-2xl font-semibold text-white">Dirt Trails</p>
+                            <div class="absolute bottom-5 left-5 pointer-events-none">
+                                <p class="text-[10px] font-semibold tracking-[0.3em] uppercase text-[#FFB347] mb-1">Ride</p>
+                                <p class="font-serif text-lg md:text-xl xl:text-2xl font-semibold text-white">Dirt Trails</p>
                             </div>
-                            <div class="absolute top-5 right-5 w-10 h-10 rounded-full bg-black/30 backdrop-blur-sm flex items-center justify-center pointer-events-none">
-                                <iconify-icon icon="lucide:bike" width="18" class="text-[#FFB347]/80"></iconify-icon>
+                            <div class="absolute top-4 right-4 w-9 h-9 rounded-full bg-black/30 backdrop-blur-sm flex items-center justify-center pointer-events-none">
+                                <iconify-icon icon="lucide:bike" width="16" class="text-[#FFB347]/80"></iconify-icon>
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
 
+            <!-- PASSIONS -->
             <section class="panel" data-idx="3">
                 <div class="absolute top-[20%] left-[-5%] w-[420px] h-[420px] rounded-full bg-gradient-to-br from-[#FFB347]/10 to-transparent blur-[100px] parallax" data-speed="-0.12"></div>
                 <div class="absolute bottom-[10%] right-[5%] w-[300px] h-[300px] rounded-full bg-gradient-to-tl from-[#FF4E6A]/8 to-transparent blur-[90px] parallax" data-speed="0.1"></div>
 
-                <div class="relative z-10 px-10 lg:px-20 xl:px-28 max-w-[1080px] w-full pt-14">
-                    <p class="text-[11px] font-semibold tracking-[0.35em] uppercase text-[#FF6B35] mb-4 fade-up">Passions</p>
-                    <h2 class="font-serif text-4xl md:text-5xl xl:text-[3.6rem] font-bold leading-[0.92] tracking-tight mb-14 title-hover cursor-default">
+                <div class="passions-content relative z-10 px-6 sm:px-8 lg:px-20 xl:px-28 max-w-[1080px] w-full pt-14">
+                    <p class="text-[11px] font-semibold tracking-[0.35em] uppercase text-[#FF6B35] mb-3 fade-up">Passions</p>
+                    <h2 class="font-serif text-3xl sm:text-4xl md:text-5xl xl:text-[3.6rem] font-bold leading-[0.92] tracking-tight mb-10 md:mb-14 title-hover cursor-default">
                         What I <span class="gradient-text">Love</span>
                     </h2>
 
-                    <div class="grid md:grid-cols-3 gap-5 fade-up">
-                        <div class="p-7 xl:p-8 rounded-2xl border border-white/[0.05] bg-white/[0.015] backdrop-blur-sm card-hover cursor-none group">
-                            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-[#FF6B35]/20 to-[#FF4E6A]/8 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                                <iconify-icon icon="lucide:cpu" width="22" class="text-[#FF6B35]"></iconify-icon>
+                    <div class="passions-grid grid md:grid-cols-3 gap-4 md:gap-5 fade-up">
+                        <div class="p-5 md:p-7 xl:p-8 rounded-2xl border border-white/[0.05] bg-white/[0.015] backdrop-blur-sm card-hover cursor-none group">
+                            <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-[#FF6B35]/20 to-[#FF4E6A]/8 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300">
+                                <iconify-icon icon="lucide:cpu" width="20" class="text-[#FF6B35]"></iconify-icon>
                             </div>
-                            <h3 class="font-serif text-xl font-semibold mb-3 title-hover cursor-none">AI & Technology</h3>
-                            <p class="text-[#707088] text-sm leading-relaxed">
+                            <h3 class="font-serif text-lg md:text-xl font-semibold mb-2.5 title-hover cursor-none">AI & Technology</h3>
+                            <p class="text-[#707088] text-xs md:text-sm leading-relaxed">
                                 Exploring the frontiers of artificial intelligence — building, learning, and pushing boundaries every day.
                             </p>
                         </div>
 
-                        <div class="p-7 xl:p-8 rounded-2xl border border-white/[0.05] bg-white/[0.015] backdrop-blur-sm card-hover cursor-none group">
-                            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-[#FFB347]/20 to-[#FF6B35]/8 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                                <iconify-icon icon="lucide:trending-up" width="22" class="text-[#FFB347]"></iconify-icon>
+                        <div class="p-5 md:p-7 xl:p-8 rounded-2xl border border-white/[0.05] bg-white/[0.015] backdrop-blur-sm card-hover cursor-none group">
+                            <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-[#FFB347]/20 to-[#FF6B35]/8 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300">
+                                <iconify-icon icon="lucide:trending-up" width="20" class="text-[#FFB347]"></iconify-icon>
                             </div>
-                            <h3 class="font-serif text-xl font-semibold mb-3 title-hover cursor-none">Business Processes</h3>
-                            <p class="text-[#707088] text-sm leading-relaxed">
+                            <h3 class="font-serif text-lg md:text-xl font-semibold mb-2.5 title-hover cursor-none">Business Processes</h3>
+                            <p class="text-[#707088] text-xs md:text-sm leading-relaxed">
                                 Streamlining workflows, finding efficiencies, and making things work better for everyone involved.
                             </p>
                         </div>
 
-                        <div class="p-7 xl:p-8 rounded-2xl border border-white/[0.05] bg-white/[0.015] backdrop-blur-sm card-hover cursor-none group">
-                            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-[#FF4E6A]/20 to-[#FFB347]/8 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                                <iconify-icon icon="lucide:mountain" width="22" class="text-[#FF4E6A]"></iconify-icon>
+                        <div class="p-5 md:p-7 xl:p-8 rounded-2xl border border-white/[0.05] bg-white/[0.015] backdrop-blur-sm card-hover cursor-none group">
+                            <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-[#FF4E6A]/20 to-[#FFB347]/8 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300">
+                                <iconify-icon icon="lucide:mountain" width="20" class="text-[#FF4E6A]"></iconify-icon>
                             </div>
-                            <h3 class="font-serif text-xl font-semibold mb-3 title-hover cursor-none">Biking & Camping</h3>
-                            <p class="text-[#707088] text-sm leading-relaxed">
+                            <h3 class="font-serif text-lg md:text-xl font-semibold mb-2.5 title-hover cursor-none">Biking & Camping</h3>
+                            <p class="text-[#707088] text-xs md:text-sm leading-relaxed">
                                 Hitting dirt trails on two wheels, setting up camp under starlit skies, living wildly and freely.
                             </p>
                         </div>
@@ -449,26 +499,27 @@
                 </div>
             </section>
 
+            <!-- CONTACT -->
             <section class="panel" data-idx="4">
                 <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[650px] rounded-full bg-gradient-to-br from-[#FF6B35]/12 via-[#FF4E6A]/6 to-[#FFB347]/10 blur-[130px] parallax" data-speed="0.05"></div>
 
-                <div class="relative z-10 text-center px-10 max-w-xl pt-14">
-                    <p class="text-[11px] font-semibold tracking-[0.35em] uppercase text-[#FF6B35] mb-6 fade-up">Get In Touch</p>
-                    <h2 class="font-serif text-5xl md:text-6xl xl:text-7xl font-bold leading-[0.9] tracking-tight mb-5 title-hover cursor-default">
+                <div class="contact-content relative z-10 text-center px-6 sm:px-10 max-w-xl pt-14">
+                    <p class="text-[11px] font-semibold tracking-[0.35em] uppercase text-[#FF6B35] mb-5 fade-up">Get In Touch</p>
+                    <h2 class="font-serif text-4xl sm:text-5xl md:text-6xl xl:text-7xl font-bold leading-[0.9] tracking-tight mb-4 title-hover cursor-default">
                         Let's <span class="gradient-text">Connect</span>
                     </h2>
-                    <p class="text-[#8888A0] text-[15px] md:text-base max-w-md mx-auto mb-12 leading-relaxed fade-up">
+                    <p class="text-[#8888A0] text-sm md:text-[15px] max-w-md mx-auto mb-10 md:mb-12 leading-relaxed fade-up">
                         Always open to meeting new people, sharing ideas, or just saying hello.
                     </p>
 
-                    <a href="mailto:cvaldez@amarillowireless.net" class="btn-hover inline-flex items-center gap-3 px-10 py-4 rounded-full bg-gradient-to-r from-[#FF6B35] to-[#FF4E6A] text-white font-semibold text-[15px] tracking-wide fade-up">
-                        <iconify-icon icon="lucide:mail" width="20"></iconify-icon>
+                    <a href="mailto:cvaldez@amarillowireless.net" class="btn-hover inline-flex items-center gap-3 px-8 sm:px-10 py-3.5 sm:py-4 rounded-full bg-gradient-to-r from-[#FF6B35] to-[#FF4E6A] text-white font-semibold text-sm sm:text-[15px] tracking-wide fade-up">
+                        <iconify-icon icon="lucide:mail" width="18"></iconify-icon>
                         Email Me
                     </a>
 
-                    <p class="mt-6 text-[#454560] text-sm font-mono fade-up">cvaldez@amarillowireless.net</p>
+                    <p class="mt-5 text-[#454560] text-xs sm:text-sm font-mono fade-up">cvaldez@amarillowireless.net</p>
 
-                    <div class="mt-16 flex items-center justify-center gap-3 fade-up">
+                    <div class="mt-14 flex items-center justify-center gap-3 fade-up">
                         <div class="w-10 h-[1px] bg-[#FF6B35]/25"></div>
                         <div class="w-[6px] h-[6px] rotate-45 border border-[#FF6B35]/30"></div>
                         <div class="w-20 h-[1px] bg-[#FF6B35]/15"></div>
@@ -498,7 +549,6 @@
         <iconify-icon icon="lucide:chevron-right" width="20" class="text-white/60"></iconify-icon>
     </button>
 
-    <!-- ===== SCROLL JS ===== -->
     <script>
     (function() {
         var track = document.getElementById('track');
@@ -582,7 +632,6 @@
     })();
     </script>
 
-    <!-- ===== SUMMER BACKGROUND JS (desktop only) ===== -->
     <script>
     (function() {
         if (window.matchMedia('(pointer: coarse)').matches) return;
@@ -624,7 +673,6 @@
     })();
     </script>
 
-    <!-- ===== CURSOR EFFECT JS (desktop only) ===== -->
     <script>
     (function() {
         if (window.matchMedia('(pointer: coarse)').matches) return;
