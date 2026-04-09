@@ -207,6 +207,7 @@
         }
         #cursor-dot.hidden, #cursor-glow.hidden { opacity: 0; }
 
+        /* Hide cursor elements on touch devices */
         @media (pointer: coarse) {
             #cursor-dot, #cursor-glow { display: none !important; }
             html, body, .dot, .arrow-btn, a { cursor: auto !important; }
@@ -280,7 +281,7 @@
                         </p>
                         <div class="mt-10 flex items-center gap-2 text-[11px] text-[#505068] tracking-[0.2em] uppercase font-medium">
                             <iconify-icon icon="lucide:arrow-right" class="text-[#FF6B35] text-sm"></iconify-icon>
-                            <span>Scroll to explore</span>
+                            <span>Swipe to explore</span>
                         </div>
                     </div>
 
@@ -471,6 +472,7 @@
         <iconify-icon icon="lucide:chevron-right" width="20" class="text-white/60"></iconify-icon>
     </button>
 
+    <!-- ===== SCROLL JS ===== -->
     <script>
     (function() {
         var track = document.getElementById('track');
@@ -553,8 +555,12 @@
     })();
     </script>
 
+    <!-- ===== SUMMER BACKGROUND JS (desktop only) ===== -->
     <script>
     (function() {
+        // Skip entirely on touch devices
+        if (window.matchMedia('(pointer: coarse)').matches) return;
+
         var canvas = document.getElementById('summer-bg');
         var ctx = canvas.getContext('2d');
         function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
@@ -618,8 +624,12 @@
     })();
     </script>
 
+    <!-- ===== CURSOR EFFECT JS (desktop only) ===== -->
     <script>
     (function() {
+        // Skip entirely on touch devices
+        if (window.matchMedia('(pointer: coarse)').matches) return;
+
         var dot = document.getElementById('cursor-dot');
         var glow = document.getElementById('cursor-glow');
         var mx = -100, my = -100;
@@ -651,16 +661,10 @@
 
         var interactives = 'a, button, .dot, .arrow-btn, .card-hover, .pill-hover, .photo-hover, .scene-hover, .btn-hover';
         document.addEventListener('mouseover', function(e) {
-            if (e.target.closest(interactives)) {
-                dot.classList.add('expanded');
-                glow.classList.add('expanded');
-            }
+            if (e.target.closest(interactives)) { dot.classList.add('expanded'); glow.classList.add('expanded'); }
         });
         document.addEventListener('mouseout', function(e) {
-            if (e.target.closest(interactives)) {
-                dot.classList.remove('expanded');
-                glow.classList.remove('expanded');
-            }
+            if (e.target.closest(interactives)) { dot.classList.remove('expanded'); glow.classList.remove('expanded'); }
         });
 
         function tick() {
