@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carlos | Driven by Purpose</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script>
+    tailwind.config = {
+        theme: {
+            extend: {
+                fontFamily: {
+                    serif: ['Playfair Display', 'serif'],
+                    sans: ['Inter', 'sans-serif'],
+                }
+            }
+        }
+    }
+    </script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body { height: 100%; overflow: hidden; background: #0B0B14; cursor: none; }
+
+        .hscroll-wrapper {
+            height: 100%;
+            overflow: hidden;
+            position: relative;
+            z-index: 1;
+        }
+        .hscroll-track {
+            display: flex;
+            height: 100%;
+            will-change: transform;
+        }
+        .panel {
+            min-width: 100vw;
+            width: 100vw;
+            height: 100vh;
+            flex-shrink: 0;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .marquee-track {
+            display: flex;
+            animation: marquee 25s linear infinite;
+            width: max-content;
+        }
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .title-hover {
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .title-hover:hover {
+            color: #FF6B35;
+            letter-spacing: 0.08em;
+            text-shadow: 0 0 50px rgba(255, 107, 53, 0.3);
+        }
+
+        .btn-hover {
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-hover::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%; width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.6s;
+        }
+        .btn-hover:hover::before { left: 100%; }
+        .btn-hover:hover {
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0 16px 50px rgba(255, 107, 53, 0.35);
+        }
+
+        .card-hover {
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .card-hover:hover {
+            transform: translateY(-8px);
+            border-color: rgba(255, 107, 53, 0.35);
+            box-shadow: 0 24px 60px rgba(255, 107, 53, 0.08);
+        }
+
+        .photo-hover {
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .photo-hover:hover {
+            transform: scale(1.04) translateY(-10px) rotate(-1.2deg);
+            box-shadow: 0 30px 80px rgba(255, 107, 53, 0.18), 0 0 120px rgba(255, 78, 106, 0.1);
+        }
+
+        .scene-hover {
+            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .scene-hover:hover {
+            transform: scale(1.1) translateY(-12px);
+        }
+        .scene-hover-r:hover {
+            transform: scale(1.1) translateY(-12px) translateX(8px);
+        }
+
+        .pill-hover {
+            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .pill-hover:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 30px rgba(255, 107, 53, 0.15);
+        }
+
+        .dot {
+            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            cursor: none;
+        }
+        .dot.active {
+            width: 36px;
+            border-radius: 6px;
+            background: #FF6B35 !important;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #FF6B35 0%, #FF4E6A 50%, #FFB347 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .glow-frame {
+            box-shadow: 0 0 80px rgba(255, 107, 53, 0.12), 0 0 160px rgba(255, 78, 106, 0.06);
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .art-line {
+            background: linear-gradient(90deg, transparent, #FF6B35, transparent);
+            height: 1px;
+        }
+
+        .fade-up {
+            opacity: 0;
+            transform: translateY(35px);
+            transition: all 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .arrow-btn {
+            transition: all 0.3s ease;
+            cursor: none;
+        }
+        .arrow-btn:hover {
+            border-color: rgba(255, 107, 53, 0.5);
+            background: rgba(255, 107, 53, 0.08);
+        }
+        .arrow-btn:hover iconify-icon {
+            color: #FF6B35 !important;
+        }
+
+        a { cursor: none; }
+
+        #summer-bg {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        #cursor-dot {
+            position: fixed;
+            width: 6px; height: 6px;
+            border-radius: 50%;
+            background: #FF6B35;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: width 0.25s ease, height 0.25s ease, background 0.25s ease, opacity 0.25s ease;
+        }
+        #cursor-glow {
+            position: fixed;
+            width: 40px; height: 40px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255,107,53,0.12) 0%, rgba(255,107,53,0.04) 40%, transparent 70%);
+            pointer-events: none;
+            z-index: 9998;
+            transform: translate(-50%, -50%);
+            transition: width 0.45s cubic-bezier(0.16, 1, 0.3, 1), height 0.45s cubic-bezier(0.16, 1, 0.3, 1), background 0.45s ease, opacity 0.3s ease;
+        }
+        #cursor-glow.expanded {
+            width: 64px; height: 64px;
+            background: radial-gradient(circle, rgba(255,107,53,0.18) 0%, rgba(255,78,106,0.06) 40%, transparent 70%);
+        }
+        #cursor-dot.expanded {
+            width: 10px; height: 10px;
+            background: #FFB347;
+        }
+        #cursor-dot.hidden, #cursor-glow.hidden { opacity: 0; }
+
+        @media (pointer: coarse) {
+            #cursor-dot, #cursor-glow { display: none !important; }
+            html, body, .dot, .arrow-btn, a { cursor: auto !important; }
+        }
+    </style>
+</head>
+<body class="bg-[#0B0B14] text-[#F5F5F7] font-sans">
+
+    <div id="cursor-dot"></div>
+    <div id="cursor-glow"></div>
+
+    <canvas id="summer-bg"></canvas>
+
+    <div class="fixed top-0 left-0 right-0 z-50 bg-gradient-to-r from-[#FF6B35]/8 via-[#FF4E6A]/8 to-[#FFB347]/8 backdrop-blur-xl border-b border-white/[0.04]">
+        <div class="overflow-hidden py-3">
+            <div class="marquee-track">
+                <span class="text-[11px] font-semibold tracking-[0.35em] uppercase text-[#FF6B35]/60 mx-10">Adventurous</span>
+                <span class="text-[#FF4E6A]/30 text-xs">&#9670;</span>
+                <span class="text-[11px] font-semibold tracking-[0.35em] uppercase text-[#FFB347]/60 mx-10">Faith-Driven</span>
+                <span class="text-[#FF4E6A]/30 text-xs">&#9670;</span>
+                <span class="text-[11px] font-semibold tracking-[0.35em] uppercase text-[#FF6B35]/60 mx-10">Curious</span>
+                <span class="text-[#FF4E6A]/30 text-xs">&#9670;</span>
+                <span class="text-[11px] font-semibold tracking-[0.35em] uppercase text-[#FFB347]/60 mx-10">Bold</span>
+                <span class="text-[#FF4E6A]/30 text-xs">&#9670;</span>
+                <span class="text-[11px] font-semibold tracking-[0.35em] uppercase text-[#FF6B35]/60 mx-10">Always Happy</span>
+                <span class="text-[#FF4E6A]/30 text-xs">&#9670;</span>
+                <span class="text-[11px] font-semibold tracking-[0.35em] uppercase text-[#FFB347]/60 mx-10">Purposeful</span>
+                <span class="text-[#FF4E6A]/30 text-xs">&#9670;</span>
+                <span class="text-[11px] font-semibold tracking-[0.35em] uppercase text-[#FF6B35]/60 mx-10">Playful</span>
+                <span class="text-[#FF4E6A]/30 text-xs">&#9670;</span>
+                <span class="text-[11px] font-semibold tracking-[0.35em] uppercase text-[#FFB347]/60 mx-10">Outdoorsy</span>
+                <span class="text-[#FF4E6A]/30 text-xs">&#9670;</span>
+                <span class="text-[11px] font-semibold tracking-[0.35em] uppercase text-[#FF6B35]/60 mx-10">Adventurous</span>
+                <span class="text-[#FF4E6A]/30 text-xs">&#9670;</span>
+                <span class="text-[11px] font-semibold tracking-[0.35em] uppercase text-[#FFB347]/60 mx-10">Faith-Driven</span>
+                <span class="text-[#FF4E6A]/30 text-xs">&#9670;</span>
+                <span class="text-[11px] font-semibold tracking-[0.35em] uppercase text-[#FF6B35]/60 mx-10">Curious</span>
+                <span class="text-[#FF4E6A]/30 text-xs">&#9670;</span>
+                <span class="text-[11px] font-semibold tracking-[0.35em] uppercase text-[#FFB347]/60 mx-10">Bold</span>
+                <span class="text-[#FF4E6A]/30 text-xs">&#9670;</span>
+                <span class="text-[11px] font-semibold tracking-[0.35em] uppercase text-[#FF6B35]/60 mx-10">Always Happy</span>
+                <span class="text-[#FF4E6A]/30 text-xs">&#9670;</span>
+                <span class="text-[11px] font-semibold tracking-[0.35em] uppercase text-[#FFB347]/60 mx-10">Purposeful</span>
+                <span class="text-[#FF4E6A]/30 text-xs">&#9670;</span>
+                <span class="text-[11px] font-semibold tracking-[0.35em] uppercase text-[#FF6B35]/60 mx-10">Playful</span>
+                <span class="text-[#FF4E6A]/30 text-xs">&#9670;</span>
+                <span class="text-[11px] font-semibold tracking-[0.35em] uppercase text-[#FFB347]/60 mx-10">Outdoorsy</span>
+                <span class="text-[#FF4E6A]/30 text-xs">&#9670;</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="hscroll-wrapper" id="wrapper">
+        <div class="hscroll-track" id="track">
+
+            <section class="panel" data-idx="0">
+                <div class="absolute top-[20%] -left-40 w-[550px] h-[550px] rounded-full bg-gradient-to-br from-[#FF6B35]/18 to-[#FF4E6A]/8 blur-[130px] parallax" data-speed="-0.18"></div>
+                <div class="absolute bottom-[15%] right-[-5%] w-[420px] h-[420px] rounded-full bg-gradient-to-tl from-[#FFB347]/14 to-transparent blur-[110px] parallax" data-speed="-0.1"></div>
+                <div class="absolute top-[45%] left-[18%] w-36 art-line opacity-25 parallax" data-speed="-0.06"></div>
+                <div class="absolute top-[30%] right-[22%] w-52 art-line opacity-15 parallax" data-speed="0.09"></div>
+
+                <div class="relative z-10 flex items-center gap-12 xl:gap-20 px-10 lg:px-20 xl:px-28 max-w-[1380px] pt-14">
+                    <div class="flex-1 min-w-0">
+                        <p class="text-[11px] font-semibold tracking-[0.35em] uppercase text-[#FF6B35] mb-5 fade-up">Welcome to my world</p>
+                        <h1 class="font-serif text-6xl sm:text-7xl xl:text-[5.5rem] font-bold leading-[0.95] tracking-tight mb-8 title-hover cursor-default">
+                            <span class="gradient-text">Carlos</span>
+                        </h1>
+                        <div class="w-16 h-[2px] bg-gradient-to-r from-[#FF6B35] to-[#FF4E6A] mb-8"></div>
+                        <p class="font-serif italic text-lg md:text-xl text-[#9090A8] leading-relaxed max-w-md">
+                            "Built on faith, powered by curiosity, driven by purpose."
+                        </p>
+                        <div class="mt-10 flex items-center gap-2 text-[11px] text-[#505068] tracking-[0.2em] uppercase font-medium">
+                            <iconify-icon icon="lucide:arrow-right" class="text-[#FF6B35] text-sm"></iconify-icon>
+                            <span>Scroll to explore</span>
+                        </div>
+                    </div>
+
+                    <div class="flex-shrink-0 relative">
+                        <div class="absolute -inset-5 bg-gradient-to-br from-[#FF6B35]/18 via-[#FF4E6A]/8 to-[#FFB347]/15 rounded-3xl blur-2xl parallax" data-speed="0.12"></div>
+                        <div class="relative w-64 sm:w-72 md:w-80 xl:w-[22rem] rounded-2xl overflow-hidden glow-frame parallax photo-hover" data-speed="-0.06">
+                            <img src="https://z-cdn-media.chatglm.cn/files/45fdf978-450a-413e-a2f6-6621b8515725.PNG?auth_key=1875751399-cb0adb4043b8481da0653d316d2f1708-0-c4f1dc548ee4718086b53c1090f3e2e4" alt="Carlos" class="w-full h-auto object-cover">
+                            <div class="absolute inset-0 bg-gradient-to-t from-[#0B0B14]/50 via-transparent to-transparent"></div>
+                        </div>
+                        <div class="absolute -top-3 -left-3 w-9 h-9 border-t-2 border-l-2 border-[#FF6B35]/40 rounded-tl-xl"></div>
+                        <div class="absolute -bottom-3 -right-3 w-9 h-9 border-b-2 border-r-2 border-[#FF6B35]/40 rounded-br-xl"></div>
+                        <div class="absolute -top-3 -right-3 w-5 h-5 border-t-2 border-r-2 border-[#FF4E6A]/25 rounded-tr-lg"></div>
+                        <div class="absolute -bottom-3 -left-3 w-5 h-5 border-b-2 border-l-2 border-[#FFB347]/25 rounded-bl-lg"></div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="panel" data-idx="1">
+                <div class="absolute top-[25%] right-[15%] w-[450px] h-[450px] rounded-full bg-gradient-to-bl from-[#FF4E6A]/12 to-transparent blur-[110px] parallax" data-speed="0.14"></div>
+
+                <div class="relative z-10 px-10 lg:px-20 xl:px-28 max-w-[1080px] w-full pt-14">
+                    <p class="text-[11px] font-semibold tracking-[0.35em] uppercase text-[#FF6B35] mb-4 fade-up">About Me</p>
+                    <h2 class="font-serif text-4xl md:text-5xl xl:text-[3.6rem] font-bold leading-[0.92] tracking-tight mb-12 title-hover cursor-default">
+                        Who I <span class="gradient-text">Am</span>
+                    </h2>
+
+                    <div class="grid md:grid-cols-2 gap-12 xl:gap-16">
+                        <div class="fade-up">
+                            <p class="text-[#B0B0C4] leading-[1.8] text-[15px] md:text-base mb-6">
+                                I am a God-fearing man who loves family, friends, and people in general. I believe life is an adventure meant to be lived fully — with joy in every moment and faith in every step.
+                            </p>
+                            <p class="text-[#B0B0C4] leading-[1.8] text-[15px] md:text-base">
+                                I love going for bike rides and enjoy camping under the stars. I also love working with AI and improving business processes — finding where technology meets human purpose.
+                            </p>
+                        </div>
+                        <div class="fade-up">
+                            <p class="text-[11px] font-semibold tracking-[0.25em] uppercase text-[#505068] mb-6">My Personality</p>
+                            <div class="flex flex-wrap gap-3">
+                                <span class="pill-hover px-5 py-2.5 rounded-full border border-[#FF6B35]/20 bg-[#FF6B35]/5 text-sm text-[#FFB070] cursor-none">Playful</span>
+                                <span class="pill-hover px-5 py-2.5 rounded-full border border-[#FF4E6A]/20 bg-[#FF4E6A]/5 text-sm text-[#FF8A98] cursor-none">Bold</span>
+                                <span class="pill-hover px-5 py-2.5 rounded-full border border-[#FFB347]/20 bg-[#FFB347]/5 text-sm text-[#FFD080] cursor-none">Curious</span>
+                                <span class="pill-hover px-5 py-2.5 rounded-full border border-[#FF6B35]/20 bg-[#FF6B35]/5 text-sm text-[#FFB070] cursor-none">Always Happy</span>
+                                <span class="pill-hover px-5 py-2.5 rounded-full border border-[#FF4E6A]/20 bg-[#FF4E6A]/5 text-sm text-[#FF8A98] cursor-none">Faith-Led</span>
+                                <span class="pill-hover px-5 py-2.5 rounded-full border border-[#FFB347]/20 bg-[#FFB347]/5 text-sm text-[#FFD080] cursor-none">Purpose-Driven</span>
+                            </div>
+                            <div class="mt-10 flex items-center gap-4">
+                                <div class="w-10 h-[1px] bg-[#FF6B35]/25"></div>
+                                <div class="w-[7px] h-[7px] rotate-45 border border-[#FF6B35]/35"></div>
+                                <div class="w-20 h-[1px] bg-[#FF6B35]/15"></div>
+                                <div class="w-[5px] h-[5px] rotate-45 bg-[#FF4E6A]/25"></div>
+                                <div class="w-10 h-[1px] bg-[#FF4E6A]/12"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="panel" data-idx="2">
+                <div class="absolute bottom-[-10%] left-[30%] w-[500px] h-[320px] rounded-full bg-gradient-to-t from-[#FF6B35]/10 to-transparent blur-[90px] parallax" data-speed="0.16"></div>
+
+                <div class="relative z-10 px-10 lg:px-20 xl:px-28 max-w-[1180px] w-full pt-14">
+                    <p class="text-[11px] font-semibold tracking-[0.35em] uppercase text-[#FF6B35] mb-4 fade-up">Adventure</p>
+                    <h2 class="font-serif text-4xl md:text-5xl xl:text-[3.6rem] font-bold leading-[0.92] tracking-tight mb-3 title-hover cursor-default">
+                        The Great <span class="gradient-text">Outdoors</span>
+                    </h2>
+                    <p class="text-[#8888A0] text-[15px] md:text-base mb-10 max-w-lg leading-relaxed fade-up">
+                        Adventurous to me is outdoorsy, risk-taking. It's the dirt trails, the wide-open canyons, the feeling of being truly alive.
+                    </p>
+
+                    <div class="flex gap-5 fade-up">
+                        <div class="flex-1 relative rounded-2xl overflow-hidden h-[380px] md:h-[420px] xl:h-[440px]">
+                            <img src="https://picsum.photos/seed/canyon-sunset-vast/900/700.jpg" alt="Grand Canyon vista" class="w-full h-full object-cover scene-hover">
+                            <div class="absolute inset-0 bg-gradient-to-t from-[#0B0B14]/80 via-[#0B0B14]/15 to-transparent pointer-events-none"></div>
+                            <div class="absolute bottom-7 left-7 pointer-events-none">
+                                <p class="text-[10px] font-semibold tracking-[0.3em] uppercase text-[#FF6B35] mb-1.5">Explore</p>
+                                <p class="font-serif text-xl md:text-2xl font-semibold text-white">Grand Canyon</p>
+                            </div>
+                            <div class="absolute top-5 right-5 w-10 h-10 rounded-full bg-black/30 backdrop-blur-sm flex items-center justify-center pointer-events-none">
+                                <iconify-icon icon="lucide:compass" width="18" class="text-[#FF6B35]/80"></iconify-icon>
+                            </div>
+                        </div>
+
+                        <div class="flex-1 relative rounded-2xl overflow-hidden h-[380px] md:h-[420px] xl:h-[440px]">
+                            <img src="https://picsum.photos/seed/forest-dirt-path/900/700.jpg" alt="Dirt trail through nature" class="w-full h-full object-cover scene-hover scene-hover-r">
+                            <div class="absolute inset-0 bg-gradient-to-t from-[#0B0B14]/80 via-[#0B0B14]/15 to-transparent pointer-events-none"></div>
+                            <div class="absolute bottom-7 left-7 pointer-events-none">
+                                <p class="text-[10px] font-semibold tracking-[0.3em] uppercase text-[#FFB347] mb-1.5">Ride</p>
+                                <p class="font-serif text-xl md:text-2xl font-semibold text-white">Dirt Trails</p>
+                            </div>
+                            <div class="absolute top-5 right-5 w-10 h-10 rounded-full bg-black/30 backdrop-blur-sm flex items-center justify-center pointer-events-none">
+                                <iconify-icon icon="lucide:bike" width="18" class="text-[#FFB347]/80"></iconify-icon>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="panel" data-idx="3">
+                <div class="absolute top-[20%] left-[-5%] w-[420px] h-[420px] rounded-full bg-gradient-to-br from-[#FFB347]/10 to-transparent blur-[100px] parallax" data-speed="-0.12"></div>
+                <div class="absolute bottom-[10%] right-[5%] w-[300px] h-[300px] rounded-full bg-gradient-to-tl from-[#FF4E6A]/8 to-transparent blur-[90px] parallax" data-speed="0.1"></div>
+
+                <div class="relative z-10 px-10 lg:px-20 xl:px-28 max-w-[1080px] w-full pt-14">
+                    <p class="text-[11px] font-semibold tracking-[0.35em] uppercase text-[#FF6B35] mb-4 fade-up">Passions</p>
+                    <h2 class="font-serif text-4xl md:text-5xl xl:text-[3.6rem] font-bold leading-[0.92] tracking-tight mb-14 title-hover cursor-default">
+                        What I <span class="gradient-text">Love</span>
+                    </h2>
+
+                    <div class="grid md:grid-cols-3 gap-5 fade-up">
+                        <div class="p-7 xl:p-8 rounded-2xl border border-white/[0.05] bg-white/[0.015] backdrop-blur-sm card-hover cursor-none group">
+                            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-[#FF6B35]/20 to-[#FF4E6A]/8 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                                <iconify-icon icon="lucide:cpu" width="22" class="text-[#FF6B35]"></iconify-icon>
+                            </div>
+                            <h3 class="font-serif text-xl font-semibold mb-3 title-hover cursor-none">AI & Technology</h3>
+                            <p class="text-[#707088] text-sm leading-relaxed">
+                                Exploring the frontiers of artificial intelligence — building, learning, and pushing boundaries every day.
+                            </p>
+                        </div>
+
+                        <div class="p-7 xl:p-8 rounded-2xl border border-white/[0.05] bg-white/[0.015] backdrop-blur-sm card-hover cursor-none group">
+                            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-[#FFB347]/20 to-[#FF6B35]/8 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                                <iconify-icon icon="lucide:trending-up" width="22" class="text-[#FFB347]"></iconify-icon>
+                            </div>
+                            <h3 class="font-serif text-xl font-semibold mb-3 title-hover cursor-none">Business Processes</h3>
+                            <p class="text-[#707088] text-sm leading-relaxed">
+                                Streamlining workflows, finding efficiencies, and making things work better for everyone involved.
+                            </p>
+                        </div>
+
+                        <div class="p-7 xl:p-8 rounded-2xl border border-white/[0.05] bg-white/[0.015] backdrop-blur-sm card-hover cursor-none group">
+                            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-[#FF4E6A]/20 to-[#FFB347]/8 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                                <iconify-icon icon="lucide:mountain" width="22" class="text-[#FF4E6A]"></iconify-icon>
+                            </div>
+                            <h3 class="font-serif text-xl font-semibold mb-3 title-hover cursor-none">Biking & Camping</h3>
+                            <p class="text-[#707088] text-sm leading-relaxed">
+                                Hitting dirt trails on two wheels, setting up camp under starlit skies, living wildly and freely.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="panel" data-idx="4">
+                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[650px] rounded-full bg-gradient-to-br from-[#FF6B35]/12 via-[#FF4E6A]/6 to-[#FFB347]/10 blur-[130px] parallax" data-speed="0.05"></div>
+
+                <div class="relative z-10 text-center px-10 max-w-xl pt-14">
+                    <p class="text-[11px] font-semibold tracking-[0.35em] uppercase text-[#FF6B35] mb-6 fade-up">Get In Touch</p>
+                    <h2 class="font-serif text-5xl md:text-6xl xl:text-7xl font-bold leading-[0.9] tracking-tight mb-5 title-hover cursor-default">
+                        Let's <span class="gradient-text">Connect</span>
+                    </h2>
+                    <p class="text-[#8888A0] text-[15px] md:text-base max-w-md mx-auto mb-12 leading-relaxed fade-up">
+                        Always open to meeting new people, sharing ideas, or just saying hello.
+                    </p>
+
+                    <a href="mailto:cvaldez@amarillowireless.net" class="btn-hover inline-flex items-center gap-3 px-10 py-4 rounded-full bg-gradient-to-r from-[#FF6B35] to-[#FF4E6A] text-white font-semibold text-[15px] tracking-wide fade-up">
+                        <iconify-icon icon="lucide:mail" width="20"></iconify-icon>
+                        Email Me
+                    </a>
+
+                    <p class="mt-6 text-[#454560] text-sm font-mono fade-up">cvaldez@amarillowireless.net</p>
+
+                    <div class="mt-16 flex items-center justify-center gap-3 fade-up">
+                        <div class="w-10 h-[1px] bg-[#FF6B35]/25"></div>
+                        <div class="w-[6px] h-[6px] rotate-45 border border-[#FF6B35]/30"></div>
+                        <div class="w-20 h-[1px] bg-[#FF6B35]/15"></div>
+                        <div class="w-[6px] h-[6px] rotate-45 bg-[#FF4E6A]/30"></div>
+                        <div class="w-20 h-[1px] bg-[#FF6B35]/15"></div>
+                        <div class="w-[6px] h-[6px] rotate-45 border border-[#FFB347]/30"></div>
+                        <div class="w-10 h-[1px] bg-[#FFB347]/25"></div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </div>
+
+    <div class="fixed bottom-7 left-1/2 -translate-x-1/2 z-50 flex items-center gap-2.5">
+        <button class="dot w-3 h-3 rounded-full bg-white/15 active" data-target="0" aria-label="Hero"></button>
+        <button class="dot w-3 h-3 rounded-full bg-white/15" data-target="1" aria-label="About"></button>
+        <button class="dot w-3 h-3 rounded-full bg-white/15" data-target="2" aria-label="Adventure"></button>
+        <button class="dot w-3 h-3 rounded-full bg-white/15" data-target="3" aria-label="Passions"></button>
+        <button class="dot w-3 h-3 rounded-full bg-white/15" data-target="4" aria-label="Contact"></button>
+    </div>
+
+    <button id="prev-btn" class="arrow-btn fixed left-5 top-1/2 -translate-y-1/2 z-50 w-11 h-11 rounded-full border border-white/15 bg-[#0B0B14]/70 backdrop-blur-sm flex items-center justify-center" style="opacity:0.15;pointer-events:none;" aria-label="Previous">
+        <iconify-icon icon="lucide:chevron-left" width="20" class="text-white/60"></iconify-icon>
+    </button>
+    <button id="next-btn" class="arrow-btn fixed right-5 top-1/2 -translate-y-1/2 z-50 w-11 h-11 rounded-full border border-white/15 bg-[#0B0B14]/70 backdrop-blur-sm flex items-center justify-center" aria-label="Next">
+        <iconify-icon icon="lucide:chevron-right" width="20" class="text-white/60"></iconify-icon>
+    </button>
+
+    <script>
+    (function() {
+        var track = document.getElementById('track');
+        var panels = document.querySelectorAll('.panel');
+        var dots = document.querySelectorAll('.dot');
+        var prevBtn = document.getElementById('prev-btn');
+        var nextBtn = document.getElementById('next-btn');
+        var total = panels.length;
+        var current = 0, targetX = 0, currentX = 0, isAnimating = false, animDuration = 900;
+
+        function goTo(idx) {
+            idx = Math.max(0, Math.min(idx, total - 1));
+            if (idx === current && !isAnimating) return;
+            current = idx;
+            targetX = -idx * window.innerWidth;
+            isAnimating = true;
+            updateUI();
+            setTimeout(function() { isAnimating = false; }, animDuration);
+        }
+
+        function animate() {
+            var diff = targetX - currentX;
+            currentX += Math.abs(diff) > 0.5 ? diff * 0.1 : diff;
+            track.style.transform = 'translateX(' + currentX + 'px)';
+            updateParallax();
+            requestAnimationFrame(animate);
+        }
+        animate();
+
+        function updateUI() {
+            dots.forEach(function(d, i) { d.classList.toggle('active', i === current); });
+            prevBtn.style.opacity = current === 0 ? '0.15' : '0.6';
+            prevBtn.style.pointerEvents = current === 0 ? 'none' : 'auto';
+            nextBtn.style.opacity = current === total - 1 ? '0.15' : '0.6';
+            nextBtn.style.pointerEvents = current === total - 1 ? 'none' : 'auto';
+            panels[current].querySelectorAll('.fade-up').forEach(function(el) { el.classList.add('visible'); });
+        }
+
+        function updateParallax() {
+            var vw = window.innerWidth;
+            document.querySelectorAll('.parallax').forEach(function(el) {
+                var speed = parseFloat(el.dataset.speed) || 0;
+                var parent = el.closest('.panel');
+                if (!parent) return;
+                var panelCenter = parseInt(parent.dataset.idx) * vw + vw / 2;
+                var dist = (-currentX + vw / 2) - panelCenter;
+                el.style.transform = 'translateX(' + (dist * speed) + 'px)';
+            });
+        }
+
+        window.addEventListener('wheel', function(e) {
+            e.preventDefault();
+            if (isAnimating || Math.abs(e.deltaY) < 15) return;
+            goTo(e.deltaY > 0 ? current + 1 : current - 1);
+        }, { passive: false });
+
+        window.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight') goTo(current + 1);
+            if (e.key === 'ArrowLeft') goTo(current - 1);
+        });
+
+        prevBtn.addEventListener('click', function() { goTo(current - 1); });
+        nextBtn.addEventListener('click', function() { goTo(current + 1); });
+        dots.forEach(function(d) { d.addEventListener('click', function() { goTo(+d.dataset.target); }); });
+
+        var touchX = 0, touchY = 0;
+        window.addEventListener('touchstart', function(e) { touchX = e.touches[0].clientX; touchY = e.touches[0].clientY; }, { passive: true });
+        window.addEventListener('touchend', function(e) {
+            var dx = e.changedTouches[0].clientX - touchX;
+            if (Math.abs(dx) > Math.abs(e.changedTouches[0].clientY - touchY) && Math.abs(dx) > 50) goTo(dx < 0 ? current + 1 : current - 1);
+        }, { passive: true });
+
+        window.addEventListener('resize', function() {
+            targetX = -current * window.innerWidth;
+            currentX = targetX;
+            track.style.transform = 'translateX(' + currentX + 'px)';
+        });
+
+        setTimeout(function() { panels[0].querySelectorAll('.fade-up').forEach(function(el) { el.classList.add('visible'); }); }, 200);
+    })();
+    </script>
+
+    <script>
+    (function() {
+        var canvas = document.getElementById('summer-bg');
+        var ctx = canvas.getContext('2d');
+        function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+        resize();
+        window.addEventListener('resize', resize);
+
+        var colors = [[255,107,53],[255,179,71],[255,78,106],[255,200,100],[255,140,60],[255,220,130]];
+        var particles = [];
+        var i;
+
+        for (i = 0; i < 40; i++) {
+            var c = colors[Math.floor(Math.random() * colors.length)];
+            particles.push({
+                x: Math.random() * canvas.width, y: Math.random() * canvas.height,
+                r: Math.max(4, 8 + Math.random() * 30),
+                vy: -(0.12 + Math.random() * 0.35), vx: (Math.random() - 0.5) * 0.25,
+                opacity: 0.025 + Math.random() * 0.08,
+                cr: c[0], cg: c[1], cb: c[2],
+                phase: Math.random() * Math.PI * 2,
+                waveSpeed: 0.004 + Math.random() * 0.008,
+                waveAmp: 0.3 + Math.random() * 0.6,
+            });
+        }
+        for (i = 0; i < 35; i++) {
+            var c = colors[Math.floor(Math.random() * colors.length)];
+            particles.push({
+                x: Math.random() * canvas.width, y: Math.random() * canvas.height,
+                r: 1 + Math.random() * 2.5,
+                vy: -(0.04 + Math.random() * 0.18), vx: (Math.random() - 0.5) * 0.12,
+                opacity: 0.08 + Math.random() * 0.2,
+                cr: c[0], cg: c[1], cb: c[2],
+                phase: Math.random() * Math.PI * 2,
+                waveSpeed: 0.006 + Math.random() * 0.012,
+                waveAmp: 0.15 + Math.random() * 0.4,
+                sparkle: true,
+            });
+        }
+
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (var i = 0; i < particles.length; i++) {
+                var p = particles[i];
+                p.phase += p.waveSpeed;
+                p.y += p.vy;
+                p.x += p.vx + Math.sin(p.phase) * p.waveAmp;
+                if (p.y < -p.r * 3) { p.y = canvas.height + p.r * 3; p.x = Math.random() * canvas.width; }
+                if (p.x < -p.r * 3) p.x = canvas.width + p.r * 2;
+                if (p.x > canvas.width + p.r * 3) p.x = -p.r * 2;
+                var op = p.opacity;
+                if (p.sparkle) op *= 0.4 + 0.6 * Math.abs(Math.sin(p.phase * 2.5));
+                var rad = Math.max(1, p.r);
+                var g = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, rad);
+                g.addColorStop(0, 'rgba(' + p.cr + ',' + p.cg + ',' + p.cb + ',' + op + ')');
+                g.addColorStop(0.4, 'rgba(' + p.cr + ',' + p.cg + ',' + p.cb + ',' + (op * 0.45) + ')');
+                g.addColorStop(1, 'rgba(' + p.cr + ',' + p.cg + ',' + p.cb + ',0)');
+                ctx.beginPath(); ctx.fillStyle = g; ctx.arc(p.x, p.y, rad, 0, Math.PI * 2); ctx.fill();
+            }
+            requestAnimationFrame(draw);
+        }
+        draw();
+    })();
+    </script>
+
+    <script>
+    (function() {
+        var dot = document.getElementById('cursor-dot');
+        var glow = document.getElementById('cursor-glow');
+        var mx = -100, my = -100;
+        var dx = -100, dy = -100;
+        var gx = -100, gy = -100;
+        var visible = false;
+
+        document.addEventListener('mousemove', function(e) {
+            mx = e.clientX;
+            my = e.clientY;
+            if (!visible) {
+                visible = true;
+                dx = mx; dy = my;
+                gx = mx; gy = my;
+                dot.style.left = mx + 'px';
+                dot.style.top = my + 'px';
+                glow.style.left = mx + 'px';
+                glow.style.top = my + 'px';
+                dot.classList.remove('hidden');
+                glow.classList.remove('hidden');
+            }
+        });
+
+        document.addEventListener('mouseleave', function() {
+            visible = false;
+            dot.classList.add('hidden');
+            glow.classList.add('hidden');
+        });
+
+        var interactives = 'a, button, .dot, .arrow-btn, .card-hover, .pill-hover, .photo-hover, .scene-hover, .btn-hover';
+        document.addEventListener('mouseover', function(e) {
+            if (e.target.closest(interactives)) {
+                dot.classList.add('expanded');
+                glow.classList.add('expanded');
+            }
+        });
+        document.addEventListener('mouseout', function(e) {
+            if (e.target.closest(interactives)) {
+                dot.classList.remove('expanded');
+                glow.classList.remove('expanded');
+            }
+        });
+
+        function tick() {
+            dx += (mx - dx) * 0.35;
+            dy += (my - dy) * 0.35;
+            dot.style.left = dx + 'px';
+            dot.style.top = dy + 'px';
+            gx += (mx - gx) * 0.12;
+            gy += (my - gy) * 0.12;
+            glow.style.left = gx + 'px';
+            glow.style.top = gy + 'px';
+            requestAnimationFrame(tick);
+        }
+        tick();
+    })();
+    </script>
+
+</body>
+</html>
