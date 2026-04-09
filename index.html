@@ -207,10 +207,36 @@
         }
         #cursor-dot.hidden, #cursor-glow.hidden { opacity: 0; }
 
-        /* Hide cursor elements on touch devices */
-        @media (pointer: coarse) {
+        /* ===== MOBILE PERFORMANCE: kill all expensive effects ===== */
+        @media (pointer: coarse), (max-width: 768px) {
+            /* Hide cursor elements */
             #cursor-dot, #cursor-glow { display: none !important; }
             html, body, .dot, .arrow-btn, a { cursor: auto !important; }
+
+            /* Kill blur on all decorative blobs — these are the biggest mobile killers */
+            .parallax {
+                filter: none !important;
+                -webkit-filter: none !important;
+                opacity: 0.35;
+            }
+
+            /* Kill backdrop blur on banner */
+            .backdrop-blur-xl,
+            [class*="backdrop-blur"] {
+                backdrop-filter: none !important;
+                -webkit-backdrop-filter: none !important;
+            }
+
+            /* Kill glow frame shadow */
+            .glow-frame {
+                box-shadow: 0 0 20px rgba(255, 107, 53, 0.06) !important;
+            }
+
+            /* Kill blur-2xl on photo glow */
+            .blur-2xl {
+                filter: none !important;
+                -webkit-filter: none !important;
+            }
         }
     </style>
 </head>
@@ -482,6 +508,7 @@
         var nextBtn = document.getElementById('next-btn');
         var total = panels.length;
         var current = 0, targetX = 0, currentX = 0, isAnimating = false, animDuration = 900;
+        var isMobile = window.matchMedia('(pointer: coarse)').matches || window.innerWidth < 768;
 
         function goTo(idx) {
             idx = Math.max(0, Math.min(idx, total - 1));
@@ -497,7 +524,7 @@
             var diff = targetX - currentX;
             currentX += Math.abs(diff) > 0.5 ? diff * 0.1 : diff;
             track.style.transform = 'translateX(' + currentX + 'px)';
-            updateParallax();
+            if (!isMobile) updateParallax();
             requestAnimationFrame(animate);
         }
         animate();
@@ -558,59 +585,32 @@
     <!-- ===== SUMMER BACKGROUND JS (desktop only) ===== -->
     <script>
     (function() {
-        // Skip entirely on touch devices
         if (window.matchMedia('(pointer: coarse)').matches) return;
-
         var canvas = document.getElementById('summer-bg');
         var ctx = canvas.getContext('2d');
         function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
         resize();
         window.addEventListener('resize', resize);
-
         var colors = [[255,107,53],[255,179,71],[255,78,106],[255,200,100],[255,140,60],[255,220,130]];
         var particles = [];
         var i;
-
         for (i = 0; i < 40; i++) {
             var c = colors[Math.floor(Math.random() * colors.length)];
-            particles.push({
-                x: Math.random() * canvas.width, y: Math.random() * canvas.height,
-                r: Math.max(4, 8 + Math.random() * 30),
-                vy: -(0.12 + Math.random() * 0.35), vx: (Math.random() - 0.5) * 0.25,
-                opacity: 0.025 + Math.random() * 0.08,
-                cr: c[0], cg: c[1], cb: c[2],
-                phase: Math.random() * Math.PI * 2,
-                waveSpeed: 0.004 + Math.random() * 0.008,
-                waveAmp: 0.3 + Math.random() * 0.6,
-            });
+            particles.push({ x: Math.random() * canvas.width, y: Math.random() * canvas.height, r: Math.max(4, 8 + Math.random() * 30), vy: -(0.12 + Math.random() * 0.35), vx: (Math.random() - 0.5) * 0.25, opacity: 0.025 + Math.random() * 0.08, cr: c[0], cg: c[1], cb: c[2], phase: Math.random() * Math.PI * 2, waveSpeed: 0.004 + Math.random() * 0.008, waveAmp: 0.3 + Math.random() * 0.6 });
         }
         for (i = 0; i < 35; i++) {
             var c = colors[Math.floor(Math.random() * colors.length)];
-            particles.push({
-                x: Math.random() * canvas.width, y: Math.random() * canvas.height,
-                r: 1 + Math.random() * 2.5,
-                vy: -(0.04 + Math.random() * 0.18), vx: (Math.random() - 0.5) * 0.12,
-                opacity: 0.08 + Math.random() * 0.2,
-                cr: c[0], cg: c[1], cb: c[2],
-                phase: Math.random() * Math.PI * 2,
-                waveSpeed: 0.006 + Math.random() * 0.012,
-                waveAmp: 0.15 + Math.random() * 0.4,
-                sparkle: true,
-            });
+            particles.push({ x: Math.random() * canvas.width, y: Math.random() * canvas.height, r: 1 + Math.random() * 2.5, vy: -(0.04 + Math.random() * 0.18), vx: (Math.random() - 0.5) * 0.12, opacity: 0.08 + Math.random() * 0.2, cr: c[0], cg: c[1], cb: c[2], phase: Math.random() * Math.PI * 2, waveSpeed: 0.006 + Math.random() * 0.012, waveAmp: 0.15 + Math.random() * 0.4, sparkle: true });
         }
-
         function draw() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             for (var i = 0; i < particles.length; i++) {
                 var p = particles[i];
-                p.phase += p.waveSpeed;
-                p.y += p.vy;
-                p.x += p.vx + Math.sin(p.phase) * p.waveAmp;
+                p.phase += p.waveSpeed; p.y += p.vy; p.x += p.vx + Math.sin(p.phase) * p.waveAmp;
                 if (p.y < -p.r * 3) { p.y = canvas.height + p.r * 3; p.x = Math.random() * canvas.width; }
                 if (p.x < -p.r * 3) p.x = canvas.width + p.r * 2;
                 if (p.x > canvas.width + p.r * 3) p.x = -p.r * 2;
-                var op = p.opacity;
-                if (p.sparkle) op *= 0.4 + 0.6 * Math.abs(Math.sin(p.phase * 2.5));
+                var op = p.opacity; if (p.sparkle) op *= 0.4 + 0.6 * Math.abs(Math.sin(p.phase * 2.5));
                 var rad = Math.max(1, p.r);
                 var g = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, rad);
                 g.addColorStop(0, 'rgba(' + p.cr + ',' + p.cg + ',' + p.cb + ',' + op + ')');
@@ -627,55 +627,21 @@
     <!-- ===== CURSOR EFFECT JS (desktop only) ===== -->
     <script>
     (function() {
-        // Skip entirely on touch devices
         if (window.matchMedia('(pointer: coarse)').matches) return;
-
         var dot = document.getElementById('cursor-dot');
         var glow = document.getElementById('cursor-glow');
-        var mx = -100, my = -100;
-        var dx = -100, dy = -100;
-        var gx = -100, gy = -100;
-        var visible = false;
-
+        var mx = -100, my = -100, dx = -100, dy = -100, gx = -100, gy = -100, visible = false;
         document.addEventListener('mousemove', function(e) {
-            mx = e.clientX;
-            my = e.clientY;
-            if (!visible) {
-                visible = true;
-                dx = mx; dy = my;
-                gx = mx; gy = my;
-                dot.style.left = mx + 'px';
-                dot.style.top = my + 'px';
-                glow.style.left = mx + 'px';
-                glow.style.top = my + 'px';
-                dot.classList.remove('hidden');
-                glow.classList.remove('hidden');
-            }
+            mx = e.clientX; my = e.clientY;
+            if (!visible) { visible = true; dx = mx; dy = my; gx = mx; gy = my; dot.style.left = mx + 'px'; dot.style.top = my + 'px'; glow.style.left = mx + 'px'; glow.style.top = my + 'px'; dot.classList.remove('hidden'); glow.classList.remove('hidden'); }
         });
-
-        document.addEventListener('mouseleave', function() {
-            visible = false;
-            dot.classList.add('hidden');
-            glow.classList.add('hidden');
-        });
-
+        document.addEventListener('mouseleave', function() { visible = false; dot.classList.add('hidden'); glow.classList.add('hidden'); });
         var interactives = 'a, button, .dot, .arrow-btn, .card-hover, .pill-hover, .photo-hover, .scene-hover, .btn-hover';
-        document.addEventListener('mouseover', function(e) {
-            if (e.target.closest(interactives)) { dot.classList.add('expanded'); glow.classList.add('expanded'); }
-        });
-        document.addEventListener('mouseout', function(e) {
-            if (e.target.closest(interactives)) { dot.classList.remove('expanded'); glow.classList.remove('expanded'); }
-        });
-
+        document.addEventListener('mouseover', function(e) { if (e.target.closest(interactives)) { dot.classList.add('expanded'); glow.classList.add('expanded'); } });
+        document.addEventListener('mouseout', function(e) { if (e.target.closest(interactives)) { dot.classList.remove('expanded'); glow.classList.remove('expanded'); } });
         function tick() {
-            dx += (mx - dx) * 0.35;
-            dy += (my - dy) * 0.35;
-            dot.style.left = dx + 'px';
-            dot.style.top = dy + 'px';
-            gx += (mx - gx) * 0.12;
-            gy += (my - gy) * 0.12;
-            glow.style.left = gx + 'px';
-            glow.style.top = gy + 'px';
+            dx += (mx - dx) * 0.35; dy += (my - dy) * 0.35; dot.style.left = dx + 'px'; dot.style.top = dy + 'px';
+            gx += (mx - gx) * 0.12; gy += (my - gy) * 0.12; glow.style.left = gx + 'px'; glow.style.top = gy + 'px';
             requestAnimationFrame(tick);
         }
         tick();
