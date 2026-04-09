@@ -56,233 +56,101 @@
             100% { transform: translateX(-50%); }
         }
 
-        .title-hover {
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .title-hover:hover {
-            color: #FF6B35;
-            letter-spacing: 0.08em;
-            text-shadow: 0 0 50px rgba(255, 107, 53, 0.3);
-        }
+        .title-hover { transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+        .title-hover:hover { color: #FF6B35; letter-spacing: 0.08em; text-shadow: 0 0 50px rgba(255, 107, 53, 0.3); }
 
-        .btn-hover {
-            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-            position: relative;
-            overflow: hidden;
-        }
-        .btn-hover::before {
-            content: '';
-            position: absolute;
-            top: 0; left: -100%; width: 100%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: left 0.6s;
-        }
+        .btn-hover { transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); position: relative; overflow: hidden; }
+        .btn-hover::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent); transition: left 0.6s; }
         .btn-hover:hover::before { left: 100%; }
-        .btn-hover:hover {
-            transform: translateY(-3px) scale(1.03);
-            box-shadow: 0 16px 50px rgba(255, 107, 53, 0.35);
-        }
+        .btn-hover:hover { transform: translateY(-3px) scale(1.03); box-shadow: 0 16px 50px rgba(255, 107, 53, 0.35); }
 
-        .card-hover {
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .card-hover:hover {
-            transform: translateY(-8px);
-            border-color: rgba(255, 107, 53, 0.35);
-            box-shadow: 0 24px 60px rgba(255, 107, 53, 0.08);
-        }
+        .card-hover { transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+        .card-hover:hover { transform: translateY(-8px); border-color: rgba(255, 107, 53, 0.35); box-shadow: 0 24px 60px rgba(255, 107, 53, 0.08); }
 
-        .photo-hover {
-            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .photo-hover:hover {
-            transform: scale(1.04) translateY(-10px) rotate(-1.2deg);
-            box-shadow: 0 30px 80px rgba(255, 107, 53, 0.18), 0 0 120px rgba(255, 78, 106, 0.1);
-        }
+        .photo-hover { transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+        .photo-hover:hover { transform: scale(1.04) translateY(-10px) rotate(-1.2deg); box-shadow: 0 30px 80px rgba(255, 107, 53, 0.18), 0 0 120px rgba(255, 78, 106, 0.1); }
 
-        .scene-hover {
-            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .scene-hover:hover {
-            transform: scale(1.1) translateY(-12px);
-        }
-        .scene-hover-r:hover {
-            transform: scale(1.1) translateY(-12px) translateX(8px);
-        }
+        .scene-hover { transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+        .scene-hover:hover { transform: scale(1.1) translateY(-12px); }
+        .scene-hover-r:hover { transform: scale(1.1) translateY(-12px) translateX(8px); }
 
-        .pill-hover {
-            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .pill-hover:hover {
-            transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 8px 30px rgba(255, 107, 53, 0.15);
-        }
+        .pill-hover { transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1); }
+        .pill-hover:hover { transform: translateY(-3px) scale(1.05); box-shadow: 0 8px 30px rgba(255, 107, 53, 0.15); }
 
-        .dot {
-            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-            cursor: none;
-        }
-        .dot.active {
-            width: 36px;
-            border-radius: 6px;
-            background: #FF6B35 !important;
-        }
+        .dot { transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1); cursor: none; }
+        .dot.active { width: 36px; border-radius: 6px; background: #FF6B35 !important; }
 
         .gradient-text {
             background: linear-gradient(135deg, #FF6B35 0%, #FF4E6A 50%, #FFB347 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
         }
 
-        .glow-frame {
-            box-shadow: 0 0 80px rgba(255, 107, 53, 0.12), 0 0 160px rgba(255, 78, 106, 0.06);
-            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-        }
+        .glow-frame { box-shadow: 0 0 80px rgba(255, 107, 53, 0.12), 0 0 160px rgba(255, 78, 106, 0.06); transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+        .art-line { background: linear-gradient(90deg, transparent, #FF6B35, transparent); height: 1px; }
 
-        .art-line {
-            background: linear-gradient(90deg, transparent, #FF6B35, transparent);
-            height: 1px;
-        }
+        .fade-up { opacity: 0; transform: translateY(35px); transition: all 0.9s cubic-bezier(0.16, 1, 0.3, 1); }
+        .fade-up.visible { opacity: 1; transform: translateY(0); }
 
-        .fade-up {
-            opacity: 0;
-            transform: translateY(35px);
-            transition: all 0.9s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .fade-up.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .arrow-btn {
-            transition: all 0.3s ease;
-            cursor: none;
-        }
-        .arrow-btn:hover {
-            border-color: rgba(255, 107, 53, 0.5);
-            background: rgba(255, 107, 53, 0.08);
-        }
-        .arrow-btn:hover iconify-icon {
-            color: #FF6B35 !important;
-        }
-
+        .arrow-btn { transition: all 0.3s ease; cursor: none; }
+        .arrow-btn:hover { border-color: rgba(255, 107, 53, 0.5); background: rgba(255, 107, 53, 0.08); }
+        .arrow-btn:hover iconify-icon { color: #FF6B35 !important; }
         a { cursor: none; }
 
-        #summer-bg {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            z-index: 0;
-            pointer-events: none;
-        }
+        #summer-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
 
-        #cursor-dot {
-            position: fixed;
-            width: 6px; height: 6px;
-            border-radius: 50%;
-            background: #FF6B35;
-            pointer-events: none;
-            z-index: 9999;
-            transform: translate(-50%, -50%);
-            transition: width 0.25s ease, height 0.25s ease, background 0.25s ease, opacity 0.25s ease;
-        }
-        #cursor-glow {
-            position: fixed;
-            width: 40px; height: 40px;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(255,107,53,0.12) 0%, rgba(255,107,53,0.04) 40%, transparent 70%);
-            pointer-events: none;
-            z-index: 9998;
-            transform: translate(-50%, -50%);
-            transition: width 0.45s cubic-bezier(0.16, 1, 0.3, 1), height 0.45s cubic-bezier(0.16, 1, 0.3, 1), background 0.45s ease, opacity 0.3s ease;
-        }
-        #cursor-glow.expanded {
-            width: 64px; height: 64px;
-            background: radial-gradient(circle, rgba(255,107,53,0.18) 0%, rgba(255,78,106,0.06) 40%, transparent 70%);
-        }
-        #cursor-dot.expanded {
-            width: 10px; height: 10px;
-            background: #FFB347;
-        }
+        #cursor-dot { position: fixed; width: 6px; height: 6px; border-radius: 50%; background: #FF6B35; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); transition: width 0.25s ease, height 0.25s ease, background 0.25s ease, opacity 0.25s ease; }
+        #cursor-glow { position: fixed; width: 40px; height: 40px; border-radius: 50%; background: radial-gradient(circle, rgba(255,107,53,0.12) 0%, rgba(255,107,53,0.04) 40%, transparent 70%); pointer-events: none; z-index: 9998; transform: translate(-50%, -50%); transition: width 0.45s cubic-bezier(0.16, 1, 0.3, 1), height 0.45s cubic-bezier(0.16, 1, 0.3, 1), background 0.45s ease, opacity 0.3s ease; }
+        #cursor-glow.expanded { width: 64px; height: 64px; background: radial-gradient(circle, rgba(255,107,53,0.18) 0%, rgba(255,78,106,0.06) 40%, transparent 70%); }
+        #cursor-dot.expanded { width: 10px; height: 10px; background: #FFB347; }
         #cursor-dot.hidden, #cursor-glow.hidden { opacity: 0; }
 
         /* ===== MOBILE PERFORMANCE ===== */
         @media (pointer: coarse), (max-width: 768px) {
             #cursor-dot, #cursor-glow { display: none !important; }
             html, body, .dot, .arrow-btn, a { cursor: auto !important; }
-            .parallax {
-                filter: none !important;
-                -webkit-filter: none !important;
-                opacity: 0.35;
-            }
-            .backdrop-blur-xl,
-            [class*="backdrop-blur"] {
-                backdrop-filter: none !important;
-                -webkit-backdrop-filter: none !important;
-            }
-            .glow-frame {
-                box-shadow: 0 0 20px rgba(255, 107, 53, 0.06) !important;
-            }
-            .blur-2xl {
-                filter: none !important;
-                -webkit-filter: none !important;
-            }
+            .parallax { filter: none !important; -webkit-filter: none !important; opacity: 0.35; }
+            .backdrop-blur-xl, [class*="backdrop-blur"] { backdrop-filter: none !important; -webkit-backdrop-filter: none !important; }
+            .glow-frame { box-shadow: 0 0 20px rgba(255, 107, 53, 0.06) !important; }
+            .blur-2xl { filter: none !important; -webkit-filter: none !important; }
         }
 
-        /* ===== MOBILE LAYOUT FIXES ===== */
+        /* ===== MOBILE LAYOUT: vertical scroll inside each panel ===== */
         @media (max-width: 767px) {
             .panel {
-                align-items: flex-start;
-                padding-top: 56px;
+                align-items: flex-start !important;
+                justify-content: flex-start !important;
+                overflow-y: auto !important;
+                overflow-x: hidden !important;
+                -webkit-overflow-scrolling: touch;
             }
             .hero-content {
                 flex-direction: column !important;
                 align-items: center !important;
                 text-align: center;
                 gap: 1.5rem !important;
-                padding-top: 0 !important;
+                padding: 50px 24px 40px !important;
+                max-width: 100% !important;
+                width: 100% !important;
             }
             .hero-text {
                 display: flex;
                 flex-direction: column;
                 align-items: center;
             }
-            .hero-text .max-w-md {
-                max-width: 100%;
-            }
+            .hero-text .max-w-md { max-width: 100%; }
             .hero-photo {
                 width: 11rem !important;
+                order: 10 !important;
             }
-            .hero-photo .parallax {
-                transform: none !important;
-            }
-            .about-content {
-                padding-top: 0 !important;
-            }
-            .adventure-content {
-                padding-top: 0 !important;
-            }
-            .adventure-images {
-                flex-direction: column !important;
-                gap: 0.75rem !important;
-            }
-            .adventure-images > div {
-                height: 220px !important;
-            }
-            .passions-content {
-                padding-top: 0 !important;
-            }
-            .passions-grid {
-                grid-template-columns: 1fr !important;
-                gap: 0.75rem !important;
-            }
-            .passions-grid > div {
-                padding: 1.25rem !important;
-            }
-            .contact-content {
-                padding-top: 0 !important;
-            }
+            .hero-photo .parallax { transform: none !important; }
+            .about-content { padding: 50px 24px 40px !important; max-width: 100% !important; width: 100% !important; }
+            .adventure-content { padding: 50px 24px 40px !important; max-width: 100% !important; width: 100% !important; }
+            .adventure-images { flex-direction: column !important; gap: 0.75rem !important; }
+            .adventure-images > div { height: 280px !important; }
+            .passions-content { padding: 50px 24px 40px !important; max-width: 100% !important; width: 100% !important; }
+            .passions-grid { grid-template-columns: 1fr !important; gap: 0.75rem !important; }
+            .passions-grid > div { padding: 1.25rem !important; }
+            .contact-content { padding: 50px 24px 40px !important; max-width: 100% !important; width: 100% !important; }
         }
     </style>
 </head>
@@ -290,9 +158,9 @@
 
     <div id="cursor-dot"></div>
     <div id="cursor-glow"></div>
-
     <canvas id="summer-bg"></canvas>
 
+    <!-- BANNER -->
     <div class="fixed top-0 left-0 right-0 z-50 bg-gradient-to-r from-[#FF6B35]/8 via-[#FF4E6A]/8 to-[#FFB347]/8 backdrop-blur-xl border-b border-white/[0.04]">
         <div class="overflow-hidden py-3">
             <div class="marquee-track">
@@ -332,6 +200,7 @@
         </div>
     </div>
 
+    <!-- HORIZONTAL SCROLL -->
     <div class="hscroll-wrapper" id="wrapper">
         <div class="hscroll-track" id="track">
 
@@ -375,13 +244,11 @@
             <!-- ABOUT -->
             <section class="panel" data-idx="1">
                 <div class="absolute top-[25%] right-[15%] w-[450px] h-[450px] rounded-full bg-gradient-to-bl from-[#FF4E6A]/12 to-transparent blur-[110px] parallax" data-speed="0.14"></div>
-
                 <div class="about-content relative z-10 px-6 sm:px-8 lg:px-20 xl:px-28 max-w-[1080px] w-full pt-14">
                     <p class="text-[11px] font-semibold tracking-[0.35em] uppercase text-[#FF6B35] mb-3 fade-up">About Me</p>
                     <h2 class="font-serif text-3xl sm:text-4xl md:text-5xl xl:text-[3.6rem] font-bold leading-[0.92] tracking-tight mb-8 md:mb-12 title-hover cursor-default">
                         Who I <span class="gradient-text">Am</span>
                     </h2>
-
                     <div class="grid md:grid-cols-2 gap-8 md:gap-12 xl:gap-16">
                         <div class="fade-up">
                             <p class="text-[#B0B0C4] leading-[1.8] text-sm md:text-[15px] mb-5">
@@ -416,7 +283,6 @@
             <!-- ADVENTURE -->
             <section class="panel" data-idx="2">
                 <div class="absolute bottom-[-10%] left-[30%] w-[500px] h-[320px] rounded-full bg-gradient-to-t from-[#FF6B35]/10 to-transparent blur-[90px] parallax" data-speed="0.16"></div>
-
                 <div class="adventure-content relative z-10 px-6 sm:px-8 lg:px-20 xl:px-28 max-w-[1180px] w-full pt-14">
                     <p class="text-[11px] font-semibold tracking-[0.35em] uppercase text-[#FF6B35] mb-3 fade-up">Adventure</p>
                     <h2 class="font-serif text-3xl sm:text-4xl md:text-5xl xl:text-[3.6rem] font-bold leading-[0.92] tracking-tight mb-2 title-hover cursor-default">
@@ -425,7 +291,6 @@
                     <p class="text-[#8888A0] text-sm md:text-[15px] mb-6 md:mb-10 max-w-lg leading-relaxed fade-up">
                         Adventurous to me is outdoorsy, risk-taking. It's the dirt trails, the wide-open canyons, the feeling of being truly alive.
                     </p>
-
                     <div class="adventure-images flex gap-5 fade-up">
                         <div class="flex-1 relative rounded-2xl overflow-hidden h-[200px] sm:h-[280px] md:h-[380px] lg:h-[420px] xl:h-[440px]">
                             <img src="https://picsum.photos/seed/canyon-sunset-vast/900/700.jpg" alt="Grand Canyon vista" class="w-full h-full object-cover scene-hover">
@@ -438,7 +303,6 @@
                                 <iconify-icon icon="lucide:compass" width="16" class="text-[#FF6B35]/80"></iconify-icon>
                             </div>
                         </div>
-
                         <div class="flex-1 relative rounded-2xl overflow-hidden h-[200px] sm:h-[280px] md:h-[380px] lg:h-[420px] xl:h-[440px]">
                             <img src="https://picsum.photos/seed/forest-dirt-path/900/700.jpg" alt="Dirt trail through nature" class="w-full h-full object-cover scene-hover scene-hover-r">
                             <div class="absolute inset-0 bg-gradient-to-t from-[#0B0B14]/80 via-[#0B0B14]/15 to-transparent pointer-events-none"></div>
@@ -458,42 +322,32 @@
             <section class="panel" data-idx="3">
                 <div class="absolute top-[20%] left-[-5%] w-[420px] h-[420px] rounded-full bg-gradient-to-br from-[#FFB347]/10 to-transparent blur-[100px] parallax" data-speed="-0.12"></div>
                 <div class="absolute bottom-[10%] right-[5%] w-[300px] h-[300px] rounded-full bg-gradient-to-tl from-[#FF4E6A]/8 to-transparent blur-[90px] parallax" data-speed="0.1"></div>
-
                 <div class="passions-content relative z-10 px-6 sm:px-8 lg:px-20 xl:px-28 max-w-[1080px] w-full pt-14">
                     <p class="text-[11px] font-semibold tracking-[0.35em] uppercase text-[#FF6B35] mb-3 fade-up">Passions</p>
                     <h2 class="font-serif text-3xl sm:text-4xl md:text-5xl xl:text-[3.6rem] font-bold leading-[0.92] tracking-tight mb-10 md:mb-14 title-hover cursor-default">
                         What I <span class="gradient-text">Love</span>
                     </h2>
-
                     <div class="passions-grid grid md:grid-cols-3 gap-4 md:gap-5 fade-up">
                         <div class="p-5 md:p-7 xl:p-8 rounded-2xl border border-white/[0.05] bg-white/[0.015] backdrop-blur-sm card-hover cursor-none group">
                             <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-[#FF6B35]/20 to-[#FF4E6A]/8 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300">
                                 <iconify-icon icon="lucide:cpu" width="20" class="text-[#FF6B35]"></iconify-icon>
                             </div>
                             <h3 class="font-serif text-lg md:text-xl font-semibold mb-2.5 title-hover cursor-none">AI & Technology</h3>
-                            <p class="text-[#707088] text-xs md:text-sm leading-relaxed">
-                                Exploring the frontiers of artificial intelligence — building, learning, and pushing boundaries every day.
-                            </p>
+                            <p class="text-[#707088] text-xs md:text-sm leading-relaxed">Exploring the frontiers of artificial intelligence — building, learning, and pushing boundaries every day.</p>
                         </div>
-
                         <div class="p-5 md:p-7 xl:p-8 rounded-2xl border border-white/[0.05] bg-white/[0.015] backdrop-blur-sm card-hover cursor-none group">
                             <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-[#FFB347]/20 to-[#FF6B35]/8 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300">
                                 <iconify-icon icon="lucide:trending-up" width="20" class="text-[#FFB347]"></iconify-icon>
                             </div>
                             <h3 class="font-serif text-lg md:text-xl font-semibold mb-2.5 title-hover cursor-none">Business Processes</h3>
-                            <p class="text-[#707088] text-xs md:text-sm leading-relaxed">
-                                Streamlining workflows, finding efficiencies, and making things work better for everyone involved.
-                            </p>
+                            <p class="text-[#707088] text-xs md:text-sm leading-relaxed">Streamlining workflows, finding efficiencies, and making things work better for everyone involved.</p>
                         </div>
-
                         <div class="p-5 md:p-7 xl:p-8 rounded-2xl border border-white/[0.05] bg-white/[0.015] backdrop-blur-sm card-hover cursor-none group">
                             <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-[#FF4E6A]/20 to-[#FFB347]/8 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300">
                                 <iconify-icon icon="lucide:mountain" width="20" class="text-[#FF4E6A]"></iconify-icon>
                             </div>
                             <h3 class="font-serif text-lg md:text-xl font-semibold mb-2.5 title-hover cursor-none">Biking & Camping</h3>
-                            <p class="text-[#707088] text-xs md:text-sm leading-relaxed">
-                                Hitting dirt trails on two wheels, setting up camp under starlit skies, living wildly and freely.
-                            </p>
+                            <p class="text-[#707088] text-xs md:text-sm leading-relaxed">Hitting dirt trails on two wheels, setting up camp under starlit skies, living wildly and freely.</p>
                         </div>
                     </div>
                 </div>
@@ -502,7 +356,6 @@
             <!-- CONTACT -->
             <section class="panel" data-idx="4">
                 <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[650px] rounded-full bg-gradient-to-br from-[#FF6B35]/12 via-[#FF4E6A]/6 to-[#FFB347]/10 blur-[130px] parallax" data-speed="0.05"></div>
-
                 <div class="contact-content relative z-10 text-center px-6 sm:px-10 max-w-xl pt-14">
                     <p class="text-[11px] font-semibold tracking-[0.35em] uppercase text-[#FF6B35] mb-5 fade-up">Get In Touch</p>
                     <h2 class="font-serif text-4xl sm:text-5xl md:text-6xl xl:text-7xl font-bold leading-[0.9] tracking-tight mb-4 title-hover cursor-default">
@@ -511,14 +364,11 @@
                     <p class="text-[#8888A0] text-sm md:text-[15px] max-w-md mx-auto mb-10 md:mb-12 leading-relaxed fade-up">
                         Always open to meeting new people, sharing ideas, or just saying hello.
                     </p>
-
                     <a href="mailto:cvaldez@amarillowireless.net" class="btn-hover inline-flex items-center gap-3 px-8 sm:px-10 py-3.5 sm:py-4 rounded-full bg-gradient-to-r from-[#FF6B35] to-[#FF4E6A] text-white font-semibold text-sm sm:text-[15px] tracking-wide fade-up">
                         <iconify-icon icon="lucide:mail" width="18"></iconify-icon>
                         Email Me
                     </a>
-
                     <p class="mt-5 text-[#454560] text-xs sm:text-sm font-mono fade-up">cvaldez@amarillowireless.net</p>
-
                     <div class="mt-14 flex items-center justify-center gap-3 fade-up">
                         <div class="w-10 h-[1px] bg-[#FF6B35]/25"></div>
                         <div class="w-[6px] h-[6px] rotate-45 border border-[#FF6B35]/30"></div>
@@ -534,6 +384,7 @@
         </div>
     </div>
 
+    <!-- DOTS -->
     <div class="fixed bottom-7 left-1/2 -translate-x-1/2 z-50 flex items-center gap-2.5">
         <button class="dot w-3 h-3 rounded-full bg-white/15 active" data-target="0" aria-label="Hero"></button>
         <button class="dot w-3 h-3 rounded-full bg-white/15" data-target="1" aria-label="About"></button>
@@ -542,6 +393,7 @@
         <button class="dot w-3 h-3 rounded-full bg-white/15" data-target="4" aria-label="Contact"></button>
     </div>
 
+    <!-- ARROWS -->
     <button id="prev-btn" class="arrow-btn fixed left-5 top-1/2 -translate-y-1/2 z-50 w-11 h-11 rounded-full border border-white/15 bg-[#0B0B14]/70 backdrop-blur-sm flex items-center justify-center" style="opacity:0.15;pointer-events:none;" aria-label="Previous">
         <iconify-icon icon="lucide:chevron-left" width="20" class="text-white/60"></iconify-icon>
     </button>
@@ -549,6 +401,7 @@
         <iconify-icon icon="lucide:chevron-right" width="20" class="text-white/60"></iconify-icon>
     </button>
 
+    <!-- SCROLL JS -->
     <script>
     (function() {
         var track = document.getElementById('track');
@@ -567,6 +420,8 @@
             targetX = -idx * window.innerWidth;
             isAnimating = true;
             updateUI();
+            // On mobile, scroll each panel back to top when switching
+            if (isMobile) panels[idx].scrollTop = 0;
             setTimeout(function() { isAnimating = false; }, animDuration);
         }
 
@@ -615,14 +470,35 @@
         nextBtn.addEventListener('click', function() { goTo(current + 1); });
         dots.forEach(function(d) { d.addEventListener('click', function() { goTo(+d.dataset.target); }); });
 
-        var touchX = 0, touchY = 0;
-        window.addEventListener('touchstart', function(e) { touchX = e.touches[0].clientX; touchY = e.touches[0].clientY; }, { passive: true });
+        // Touch: swipe left/right for panels, native scroll handles up/down
+        var touchX = 0, touchY = 0, touchLocked = false;
+        window.addEventListener('touchstart', function(e) {
+            touchX = e.touches[0].clientX;
+            touchY = e.touches[0].clientY;
+            touchLocked = false;
+        }, { passive: true });
+
+        window.addEventListener('touchmove', function(e) {
+            if (touchLocked) return;
+            var dx = e.touches[0].clientX - touchX;
+            var dy = e.touches[0].clientY - touchY;
+            // If horizontal swipe is clearly dominant, lock it so browser doesn't scroll vertically
+            if (Math.abs(dx) > 15 && Math.abs(dx) > Math.abs(dy) * 1.5) {
+                touchLocked = true;
+            }
+        }, { passive: true });
+
         window.addEventListener('touchend', function(e) {
             var dx = e.changedTouches[0].clientX - touchX;
-            if (Math.abs(dx) > Math.abs(e.changedTouches[0].clientY - touchY) && Math.abs(dx) > 50) goTo(dx < 0 ? current + 1 : current - 1);
+            var dy = e.changedTouches[0].clientY - touchY;
+            // Only switch panels if it was a clear horizontal swipe
+            if (touchLocked && Math.abs(dx) > 50) {
+                goTo(dx < 0 ? current + 1 : current - 1);
+            }
         }, { passive: true });
 
         window.addEventListener('resize', function() {
+            isMobile = window.matchMedia('(pointer: coarse)').matches || window.innerWidth < 768;
             targetX = -current * window.innerWidth;
             currentX = targetX;
             track.style.transform = 'translateX(' + currentX + 'px)';
@@ -632,66 +508,35 @@
     })();
     </script>
 
+    <!-- SUMMER BACKGROUND (desktop only) -->
     <script>
     (function() {
         if (window.matchMedia('(pointer: coarse)').matches) return;
         var canvas = document.getElementById('summer-bg');
         var ctx = canvas.getContext('2d');
         function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
-        resize();
-        window.addEventListener('resize', resize);
+        resize(); window.addEventListener('resize', resize);
         var colors = [[255,107,53],[255,179,71],[255,78,106],[255,200,100],[255,140,60],[255,220,130]];
-        var particles = [];
-        var i;
-        for (i = 0; i < 40; i++) {
-            var c = colors[Math.floor(Math.random() * colors.length)];
-            particles.push({ x: Math.random() * canvas.width, y: Math.random() * canvas.height, r: Math.max(4, 8 + Math.random() * 30), vy: -(0.12 + Math.random() * 0.35), vx: (Math.random() - 0.5) * 0.25, opacity: 0.025 + Math.random() * 0.08, cr: c[0], cg: c[1], cb: c[2], phase: Math.random() * Math.PI * 2, waveSpeed: 0.004 + Math.random() * 0.008, waveAmp: 0.3 + Math.random() * 0.6 });
-        }
-        for (i = 0; i < 35; i++) {
-            var c = colors[Math.floor(Math.random() * colors.length)];
-            particles.push({ x: Math.random() * canvas.width, y: Math.random() * canvas.height, r: 1 + Math.random() * 2.5, vy: -(0.04 + Math.random() * 0.18), vx: (Math.random() - 0.5) * 0.12, opacity: 0.08 + Math.random() * 0.2, cr: c[0], cg: c[1], cb: c[2], phase: Math.random() * Math.PI * 2, waveSpeed: 0.006 + Math.random() * 0.012, waveAmp: 0.15 + Math.random() * 0.4, sparkle: true });
-        }
-        function draw() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            for (var i = 0; i < particles.length; i++) {
-                var p = particles[i];
-                p.phase += p.waveSpeed; p.y += p.vy; p.x += p.vx + Math.sin(p.phase) * p.waveAmp;
-                if (p.y < -p.r * 3) { p.y = canvas.height + p.r * 3; p.x = Math.random() * canvas.width; }
-                if (p.x < -p.r * 3) p.x = canvas.width + p.r * 2;
-                if (p.x > canvas.width + p.r * 3) p.x = -p.r * 2;
-                var op = p.opacity; if (p.sparkle) op *= 0.4 + 0.6 * Math.abs(Math.sin(p.phase * 2.5));
-                var rad = Math.max(1, p.r);
-                var g = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, rad);
-                g.addColorStop(0, 'rgba(' + p.cr + ',' + p.cg + ',' + p.cb + ',' + op + ')');
-                g.addColorStop(0.4, 'rgba(' + p.cr + ',' + p.cg + ',' + p.cb + ',' + (op * 0.45) + ')');
-                g.addColorStop(1, 'rgba(' + p.cr + ',' + p.cg + ',' + p.cb + ',0)');
-                ctx.beginPath(); ctx.fillStyle = g; ctx.arc(p.x, p.y, rad, 0, Math.PI * 2); ctx.fill();
-            }
-            requestAnimationFrame(draw);
-        }
+        var particles = []; var i;
+        for (i = 0; i < 40; i++) { var c = colors[Math.floor(Math.random() * colors.length)]; particles.push({ x: Math.random() * canvas.width, y: Math.random() * canvas.height, r: Math.max(4, 8 + Math.random() * 30), vy: -(0.12 + Math.random() * 0.35), vx: (Math.random() - 0.5) * 0.25, opacity: 0.025 + Math.random() * 0.08, cr: c[0], cg: c[1], cb: c[2], phase: Math.random() * Math.PI * 2, waveSpeed: 0.004 + Math.random() * 0.008, waveAmp: 0.3 + Math.random() * 0.6 }); }
+        for (i = 0; i < 35; i++) { var c = colors[Math.floor(Math.random() * colors.length)]; particles.push({ x: Math.random() * canvas.width, y: Math.random() * canvas.height, r: 1 + Math.random() * 2.5, vy: -(0.04 + Math.random() * 0.18), vx: (Math.random() - 0.5) * 0.12, opacity: 0.08 + Math.random() * 0.2, cr: c[0], cg: c[1], cb: c[2], phase: Math.random() * Math.PI * 2, waveSpeed: 0.006 + Math.random() * 0.012, waveAmp: 0.15 + Math.random() * 0.4, sparkle: true }); }
+        function draw() { ctx.clearRect(0, 0, canvas.width, canvas.height); for (var i = 0; i < particles.length; i++) { var p = particles[i]; p.phase += p.waveSpeed; p.y += p.vy; p.x += p.vx + Math.sin(p.phase) * p.waveAmp; if (p.y < -p.r * 3) { p.y = canvas.height + p.r * 3; p.x = Math.random() * canvas.width; } if (p.x < -p.r * 3) p.x = canvas.width + p.r * 2; if (p.x > canvas.width + p.r * 3) p.x = -p.r * 2; var op = p.opacity; if (p.sparkle) op *= 0.4 + 0.6 * Math.abs(Math.sin(p.phase * 2.5)); var rad = Math.max(1, p.r); var g = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, rad); g.addColorStop(0, 'rgba(' + p.cr + ',' + p.cg + ',' + p.cb + ',' + op + ')'); g.addColorStop(0.4, 'rgba(' + p.cr + ',' + p.cg + ',' + p.cb + ',' + (op * 0.45) + ')'); g.addColorStop(1, 'rgba(' + p.cr + ',' + p.cg + ',' + p.cb + ',0)'); ctx.beginPath(); ctx.fillStyle = g; ctx.arc(p.x, p.y, rad, 0, Math.PI * 2); ctx.fill(); } requestAnimationFrame(draw); }
         draw();
     })();
     </script>
 
+    <!-- CURSOR (desktop only) -->
     <script>
     (function() {
         if (window.matchMedia('(pointer: coarse)').matches) return;
-        var dot = document.getElementById('cursor-dot');
-        var glow = document.getElementById('cursor-glow');
+        var dot = document.getElementById('cursor-dot'); var glow = document.getElementById('cursor-glow');
         var mx = -100, my = -100, dx = -100, dy = -100, gx = -100, gy = -100, visible = false;
-        document.addEventListener('mousemove', function(e) {
-            mx = e.clientX; my = e.clientY;
-            if (!visible) { visible = true; dx = mx; dy = my; gx = mx; gy = my; dot.style.left = mx + 'px'; dot.style.top = my + 'px'; glow.style.left = mx + 'px'; glow.style.top = my + 'px'; dot.classList.remove('hidden'); glow.classList.remove('hidden'); }
-        });
+        document.addEventListener('mousemove', function(e) { mx = e.clientX; my = e.clientY; if (!visible) { visible = true; dx = mx; dy = my; gx = mx; gy = my; dot.style.left = mx + 'px'; dot.style.top = my + 'px'; glow.style.left = mx + 'px'; glow.style.top = my + 'px'; dot.classList.remove('hidden'); glow.classList.remove('hidden'); } });
         document.addEventListener('mouseleave', function() { visible = false; dot.classList.add('hidden'); glow.classList.add('hidden'); });
         var interactives = 'a, button, .dot, .arrow-btn, .card-hover, .pill-hover, .photo-hover, .scene-hover, .btn-hover';
         document.addEventListener('mouseover', function(e) { if (e.target.closest(interactives)) { dot.classList.add('expanded'); glow.classList.add('expanded'); } });
         document.addEventListener('mouseout', function(e) { if (e.target.closest(interactives)) { dot.classList.remove('expanded'); glow.classList.remove('expanded'); } });
-        function tick() {
-            dx += (mx - dx) * 0.35; dy += (my - dy) * 0.35; dot.style.left = dx + 'px'; dot.style.top = dy + 'px';
-            gx += (mx - gx) * 0.12; gy += (my - gy) * 0.12; glow.style.left = gx + 'px'; glow.style.top = gy + 'px';
-            requestAnimationFrame(tick);
-        }
+        function tick() { dx += (mx - dx) * 0.35; dy += (my - dy) * 0.35; dot.style.left = dx + 'px'; dot.style.top = dy + 'px'; gx += (mx - gx) * 0.12; gy += (my - gy) * 0.12; glow.style.left = gx + 'px'; glow.style.top = gy + 'px'; requestAnimationFrame(tick); }
         tick();
     })();
     </script>
