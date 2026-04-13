@@ -79,6 +79,22 @@
         #cursor-dot.expanded { width: 10px; height: 10px; background: #FFB347; }
         #cursor-dot.hidden, #cursor-glow.hidden { opacity: 0; }
 
+        .strava-link {
+            display: block;
+            position: relative;
+            border-radius: 1rem;
+            overflow: hidden;
+        }
+        .strava-link .strava-hint {
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            transform: translateY(6px);
+        }
+        .strava-link:hover .strava-hint {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
         @media (pointer: coarse), (max-width: 768px) {
             #cursor-dot, #cursor-glow { display: none !important; }
             html, body, .dot, .arrow-btn, a { cursor: auto !important; }
@@ -86,6 +102,7 @@
             .backdrop-blur-xl, [class*="backdrop-blur"] { backdrop-filter: none !important; -webkit-backdrop-filter: none !important; }
             .glow-frame { box-shadow: 0 0 20px rgba(255, 107, 53, 0.06) !important; }
             .blur-2xl { filter: none !important; -webkit-filter: none !important; }
+            .strava-link .strava-hint { opacity: 1; transform: translateY(0); }
         }
 
         @media (max-width: 767px) {
@@ -125,7 +142,7 @@
             .personality-section .art-line-wrap { justify-content: center !important; }
             .adventure-content { padding: 50px 24px 40px !important; max-width: 100% !important; width: 100% !important; }
             .adventure-images { flex-direction: column !important; gap: 0.75rem !important; }
-            .adventure-images > div { height: 280px !important; }
+            .adventure-images > * { height: 280px !important; }
             .passions-content { padding: 50px 24px 40px !important; max-width: 100% !important; width: 100% !important; }
             .passions-grid { grid-template-columns: 1fr !important; gap: 0.75rem !important; }
             .passions-grid > div { padding: 1.25rem !important; }
@@ -266,7 +283,7 @@
                     </p>
                     <div class="adventure-images flex gap-5 fade-up">
                         <div class="flex-1 relative rounded-2xl overflow-hidden h-[200px] sm:h-[280px] md:h-[380px] lg:h-[420px] xl:h-[440px]">
-                            <img src="images/canyon.jpg" alt="Grand Canyon vista" class="w-full h-full object-cover scene-hover">
+                            <img src="https://images.unsplash.com/photo-1474044159687-1ee9f3a51722?w=900&q=80" alt="Grand Canyon vista" class="w-full h-full object-cover scene-hover">
                             <div class="absolute inset-0 bg-gradient-to-t from-[#0B0B14]/80 via-[#0B0B14]/15 to-transparent pointer-events-none"></div>
                             <div class="absolute bottom-5 left-5 pointer-events-none">
                                 <p class="text-[10px] font-semibold tracking-[0.3em] uppercase text-[#FF6B35] mb-1">Explore</p>
@@ -276,17 +293,21 @@
                                 <iconify-icon icon="lucide:compass" width="16" class="text-[#FF6B35]/80"></iconify-icon>
                             </div>
                         </div>
-                        <div class="flex-1 relative rounded-2xl overflow-hidden h-[200px] sm:h-[280px] md:h-[380px] lg:h-[420px] xl:h-[440px]">
-                            <img src="images/trail.jpg" alt="Dirt trail through nature" class="w-full h-full object-cover scene-hover scene-hover-r">
+                        <a href="https://strava.app.link/9B0rhxyhj2b" target="_blank" rel="noopener noreferrer" class="strava-link flex-1 relative rounded-2xl overflow-hidden h-[200px] sm:h-[280px] md:h-[380px] lg:h-[420px] xl:h-[440px]">
+                            <img src="https://images.unsplash.com/photo-1551632811-561732d1e306?w=900&q=80" alt="Dirt trail through nature" class="w-full h-full object-cover scene-hover scene-hover-r">
                             <div class="absolute inset-0 bg-gradient-to-t from-[#0B0B14]/80 via-[#0B0B14]/15 to-transparent pointer-events-none"></div>
                             <div class="absolute bottom-5 left-5 pointer-events-none">
                                 <p class="text-[10px] font-semibold tracking-[0.3em] uppercase text-[#FFB347] mb-1">Ride</p>
                                 <p class="font-serif text-lg md:text-xl xl:text-2xl font-semibold text-white">Dirt Trails</p>
                             </div>
                             <div class="absolute top-4 right-4 w-9 h-9 rounded-full bg-black/30 backdrop-blur-sm flex items-center justify-center pointer-events-none">
-                                <iconify-icon icon="lucide:bike" width="16" class="text-[#FFB347]/80"></iconify-icon>
+                                <iconify-icon icon="simple-icons:strava" width="16" class="text-[#FFB347]/80"></iconify-icon>
                             </div>
-                        </div>
+                            <div class="strava-hint absolute bottom-5 right-5 pointer-events-none flex items-center gap-1.5 bg-black/40 backdrop-blur-sm rounded-full px-3 py-1.5">
+                                <span class="text-[10px] font-semibold tracking-wider uppercase text-[#FFB347]/90">View on Strava</span>
+                                <iconify-icon icon="lucide:external-link" width="10" class="text-[#FFB347]/70"></iconify-icon>
+                            </div>
+                        </a>
                     </div>
                 </div>
             </section>
@@ -461,7 +482,6 @@
     })();
     </script>
 
-    <!-- SUMMER BACKGROUND (all devices) -->
     <script>
     (function() {
         var canvas = document.getElementById('summer-bg');
@@ -474,7 +494,6 @@
         var particles = [];
         var i;
 
-        // Bokeh orbs — fewer on mobile
         var bokehCount = isMobile ? 18 : 40;
         for (i = 0; i < bokehCount; i++) {
             var c = colors[Math.floor(Math.random() * colors.length)];
@@ -490,7 +509,6 @@
             });
         }
 
-        // Sparkles — 50% opacity, fewer on mobile
         var sparkleCount = isMobile ? 18 : 35;
         for (i = 0; i < sparkleCount; i++) {
             var c = colors[Math.floor(Math.random() * colors.length)];
@@ -532,7 +550,6 @@
     })();
     </script>
 
-    <!-- CURSOR (desktop only) -->
     <script>
     (function() {
         if (window.matchMedia('(pointer: coarse)').matches) return;
